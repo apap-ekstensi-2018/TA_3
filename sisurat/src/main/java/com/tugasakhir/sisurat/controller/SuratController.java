@@ -13,3 +13,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.tugasakhir.sisurat.model.SuratModel;
 import com.tugasakhir.sisurat.service.SuratService;
 
+@Controller
+public class SuratController
+{
+
+    @RequestMapping("/")
+    public String index ()
+    {
+        return "index";
+    }
+    
+}
