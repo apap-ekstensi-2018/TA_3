@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.tugasakhir.sisurat.model.JenisSuratModel;
 import com.tugasakhir.sisurat.model.SuratModel;
 import com.tugasakhir.sisurat.service.SuratService;
 
@@ -17,10 +18,21 @@ import com.tugasakhir.sisurat.service.SuratService;
 public class SuratController
 {
 
+	@Autowired
+	SuratService suratDAO;
+    
     @RequestMapping("/")
     public String index ()
     {
         return "index";
     }
     
+    @RequestMapping("/pengajuan/tambah")
+    public String pengajuan_add (Model model)
+    {
+    	List<JenisSuratModel> jenis_surat = suratDAO.selectJenisSurat();
+		model.addAttribute("jenis_surat", jenis_surat);
+		
+		return "form-pengajuan-add";
+    }
 }
