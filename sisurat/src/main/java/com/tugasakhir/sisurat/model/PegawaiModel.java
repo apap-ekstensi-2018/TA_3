@@ -13,5 +13,5 @@ public class PegawaiModel {
 	private String nip;
 	private String username;
 	private String nama;
-	private String is_staf;
+	private boolean is_staf;
 }
