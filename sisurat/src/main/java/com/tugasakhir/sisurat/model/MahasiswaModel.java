@@ -8,8 +8,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class UserAccountModel {
+public class MahasiswaModel {
+	private int id;
+	private String npm;
 	private String username;
-	private String password;
-	private String role;
+	private String nama;
+	private String status;
 }
