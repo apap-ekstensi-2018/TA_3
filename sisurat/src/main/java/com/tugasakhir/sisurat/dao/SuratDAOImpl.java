@@ -60,16 +60,23 @@ public class SuratDAOImpl implements SuratDAO{
 			
 	}
 	
-//	@Override
-//	public MatakuliahModel selectMatakuliah(){
-//		MatakuliahModel matakuliah = restTemplate.getForObject("https://apap-fasilkom.herokuapp.com/api/matkul/view/id/"+npm,MatakuliahModel.class);
-//		return matakuliah;
-//	}
+	@Override
+	public MatakuliahModel selectMatakuliah(int id){
+		MatakuliahModel matakuliah = 
+				restTemplate.getForObject("https://apap-fasilkom.herokuapp.com//api/matkul/view/id/"+id,
+				MatakuliahModel.class);
+		return matakuliah;
+	}
 	
-//	@Override
-//	public List<MatakuliahModel> selectAllMatakuliah()
-//	{
-//		List <MatakuliahModel> matakuliah2 = restTemplate.getForObject("https://apap-fasilkom.herokuapp.com/api/matkul/viewall", List.class);
-//		return matakuliah2;
-//	}
+	@Override
+	public List<MatakuliahModel> selectAllMatakuliah()
+	{
+		ResponseEntity<List<MatakuliahModel>> res =
+				restTemplate.exchange("https://apap-fasilkom.herokuapp.com/api/matkul/viewall",
+				HttpMethod.GET, null,
+				new ParameterizedTypeReference<List<MatakuliahModel>>() {});
+	
+		List<MatakuliahModel> selectAllMatakuliah = res.getBody(); 
+		return selectAllMatakuliah;
+	}
 }
