@@ -43,13 +43,20 @@ public class SuratController
     {
     	List<JenisSuratModel> jenis_surat = suratDAO.selectJenisSurat();
 		model.addAttribute("jenis_surat", jenis_surat);
+		model.addAttribute("pengajuan_surat", new PengajuanSuratModel());
 		
 		return "form-pengajuan-tambah";
     }
     
     @RequestMapping(value = "/pengajuan/tambah/submit", method = RequestMethod.POST)
-    public String addSubmit (@ModelAttribute PengajuanSuratModel pengajuan_surat, Model model)
+    public String addSubmit (@ModelAttribute("pengajuan_surat") PengajuanSuratModel pengajuan_surat, Model model)
     {
+    	if(pengajuan_surat.getAlasan_izin().isEmpty()) {
+    		pengajuan_surat.setAlasan_izin("-");
+    		pengajuan_surat.setTanggal_mulai_izin("0000-00-00");
+    		pengajuan_surat.setTanggal_selesai_izin("0000-00-00");
+    		pengajuan_surat.setId_matkul_terkait(0);
+    	}
     	suratDAO.insertPengajuan(pengajuan_surat);
         model.addAttribute ("pengajuan_surat", pengajuan_surat);
         model.addAttribute("standardDate",new Date());

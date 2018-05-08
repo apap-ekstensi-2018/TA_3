@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -70,7 +71,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="basic-form">
-                                    <form action="/pengajuan/tambah/submit" method="post">
+                                    <form action="/pengajuan/tambah/submit" method="post" th:object="${pengajuan_surat}">
 										<div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group row">
@@ -89,7 +90,7 @@
                                                 <div class="form-group row">
                                                     <label class="control-label text-right col-md-3">Keterangan</label>
                                                     <div class="col-md-9">
-                                                        <textarea type="text" class="form-control input-default" name="keterangan"></textarea>
+                                                        <textarea type="text" class="form-control input-default" name="keterangan" th:field="*{keterangan}"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -99,7 +100,7 @@
                                                 <div class="form-group row">
                                                     <label class="control-label text-right col-md-3">Alasan Izin</label>
                                                     <div class="col-md-9">
-                                                        <textarea type="text" class="form-control input-default" name="alasan_izin"></textarea>
+                                                        <textarea type="text" class="form-control input-default" name="alasan_izin" th:field="*{alasan_izin}"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -110,7 +111,7 @@
 	                                                <div class="form-group row">
 	                                                    <label class="control-label text-right col-md-3">Tanggal Izin</label>
 	                                                    <div class="col-md-9">
-	                                                        <input type="date" class="form-control input-default " name="tanggal_mulai_izin" />
+	                                                        <input type="date" class="form-control input-default " name="tanggal_mulai_izin" th:field="*{tanggal_mulai_izin}"/>
 	                                                    </div>
 	                                                </div>
 	                                            </div>
@@ -119,7 +120,7 @@
 	                                                <div class="form-group row">
 	                                                    <label class="control-label text-center col-xs-2">s/d</label>
 	                                                    <div class="col-md-9">
-	                                                        <input type="date" class="form-control input-default " name="tanggal_selesai_izin" />
+	                                                        <input type="date" class="form-control input-default " name="tanggal_selesai_izin" th:field="*{tanggal_selesai_izin}"/>
 	                                                    </div>
 	                                                </div>
 	                                            </div>
@@ -131,12 +132,13 @@
                                                 <div class="form-group row">
                                                     <label class="control-label text-right col-md-3">Matakuliah Terkait</label>
                                                     <div class="col-md-9">
-                                                        <select class="form-control" id="id_matkul_terkait" name="matkul" onchange='show()'>
-															<option>1</option>
-															<option>2</option>
-															<option>3</option>
-															<option>4</option>
-															<option>5</option>
+                                                        <select class="form-control" id="id_matkul_terkait" name="matkul" onchange='show()' 
+                                                        th:field="*{id_matkul_terkait}">
+															<option th:value="1">1</option>
+															<option th:value="2">2</option>
+															<option th:value="3">3</option>
+															<option th:value="4">4</option>
+															<option th:value="5">5</option>
 														</select>
                                                     </div>
                                                 </div>
