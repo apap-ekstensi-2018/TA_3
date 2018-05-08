@@ -1,5 +1,15 @@
 package com.tugasakhir.sisurat.model;
 
-public class UserAccountModel {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+
+public class UserAccountModel {
+	private String username;
+	private String password;
+	private String role;
 }
