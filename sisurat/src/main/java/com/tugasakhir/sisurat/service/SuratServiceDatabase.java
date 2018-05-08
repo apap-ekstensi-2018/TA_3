@@ -9,6 +9,7 @@ import com.tugasakhir.sisurat.dao.SuratMapper;
 import com.tugasakhir.sisurat.model.JenisSuratModel;
 import com.tugasakhir.sisurat.model.MatakuliahModel;
 import com.tugasakhir.sisurat.model.PengajuanSuratModel;
+import com.tugasakhir.sisurat.model.StatusSuratModel;
 import com.tugasakhir.sisurat.model.SuratModel;
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,11 @@ public class SuratServiceDatabase implements SuratService
 	public List<JenisSuratModel> selectJenisSurat() {
 		log.info("Tampilkan data jenis surat");
 		return suratMapper.selectJenisSurat();
+	}
+	@Override
+	public List<StatusSuratModel> selectStatusSurat() {
+		log.info("Tampilkan data status surat");
+		return suratMapper.selectStatusSurat();
 	}
 	
 	@Override
