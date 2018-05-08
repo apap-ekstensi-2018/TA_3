@@ -5,41 +5,59 @@
 	</head>
 	<body>
 		<div th:fragment="menu">
-		<link rel="stylesheet" href="/css/bootstrap.min.css"/>
-			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-				<a class="navbar-brand" href="#">SISURAT</a>
-				<button class="navbar-toggler" type="button" data-tonggle="collapse" 
-					data-target="#navbarSupportedContent"
-					aria-controls="navbarSupportedContent" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item">
-							<a class="nav-link" href="/">Home</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="/sisurat/viewall">Daftar Surat</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="/sisurat/add">Buat Surat</a>
-						</li>
-					</ul>
-					
-					<form class="form-inline my-2 my-lg-0">
-						<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
-						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-					</form>
-				</div>
-			</nav>
-		</div>
-		
-		<div th:fragment="footer">
-			<hr/>
-			<h6><center>SISURAT TA_3 2018</center></h6>
-		</div>
+	        <!-- header header  -->
+	        <div class="header">
+	            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+	                <!-- Logo -->
+	                <div class="navbar-header">
+	                    <a class="navbar-brand" href="/">
+	                        <!-- Logo icon -->
+	                        <b></b>
+	                        <!--End Logo icon -->
+	                        <!-- Logo text -->
+	                        <span>Sistem Informasi Surat</span>
+	                    </a>
+	                </div>
+	                <!-- End Logo -->
+	                <div class="navbar-collapse">
+	                    <!-- toggle and nav items -->
+	                    <ul class="navbar-nav mr-auto mt-md-0">
+	                    </ul>
+	                    <!-- User profile and search -->
+	                    <ul class="navbar-nav my-lg-0">
+	                        <!-- Profile -->
+	                        <li class="nav-item dropdown">
+	                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/images/users/5.jpg" alt="user" class="profile-pic" /></a>
+	                            <div class="dropdown-menu dropdown-menu-right animated zoomIn">
+	                                <ul class="dropdown-user">
+	                                    <li><a href="/login"><i class="fa fa-power-off"></i> Logout</a></li>
+	                                </ul>
+	                            </div>
+	                        </li>
+	                    </ul>
+	                </div>
+	            </nav>
+	        </div>
+	        <!-- End header header -->
+	        <!-- Left Sidebar  -->
+	        <div class="left-sidebar">
+	            <!-- Sidebar scroll-->
+	            <div class="scroll-sidebar">
+	                <!-- Sidebar navigation-->
+	                <nav class="sidebar-nav">
+	                    <ul id="sidebarnav">
+	                        <li> <a href="/" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Daftar Surat</span></a>
+	                        </li>
+	                        <li> <a href="/pengajuan/tambah" aria-expanded="false"><i class="fa fa-wpforms"></i><span class="hide-menu">Ajukan Surat</span></a>
+	                        </li>
+	                    </ul>
+	                </nav>
+	                <!-- End Sidebar navigation -->
+	            </div>
+	            <!-- End Sidebar scroll-->
+	        </div>
+	        <!-- End Left Sidebar  -->
+	      </div>
 		
 	</body>
-</html>
+</html>  
