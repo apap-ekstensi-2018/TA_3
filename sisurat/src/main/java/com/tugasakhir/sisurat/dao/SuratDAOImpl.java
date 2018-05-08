@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.tugasakhir.sisurat.model.MahasiswaModel;
 import com.tugasakhir.sisurat.model.MatakuliahModel;
+import com.tugasakhir.sisurat.model.PegawaiModel;
 
 @Service
 public class SuratDAOImpl implements SuratDAO{
@@ -37,8 +38,27 @@ public class SuratDAOImpl implements SuratDAO{
 		List<MahasiswaModel> selectAllStudents = res.getBody(); 
 		return selectAllStudents;
 	}
-//	@Autowired
-//	private RestTemplate restTemplate;
+
+
+	@Override
+	public PegawaiModel selectPegawai(String nip) {
+		
+			PegawaiModel pegawai = 
+					restTemplate.getForObject
+					("https://apap-fasilkom.herokuapp.com/api/staf/view/nip/"+nip,
+						PegawaiModel.class);
+			if(nip.equalsIgnoreCase(pegawai.getNip())) return pegawai;
+			else{
+				pegawai = 
+						restTemplate.getForObject
+						("https://apap-fasilkom.herokuapp.com/api/dosen/view/nip/"+nip,
+							PegawaiModel.class);
+				
+				return pegawai;
+			}
+			
+			
+	}
 	
 //	@Override
 //	public MatakuliahModel selectMatakuliah(){
