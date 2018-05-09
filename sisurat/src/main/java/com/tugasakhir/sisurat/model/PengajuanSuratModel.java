@@ -12,9 +12,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PengajuanSuratModel {
-	private int id;
-	private String no_surat;
+	//private int id;
+	//private String no_surat;
 	private String username_pengaju;
+<<<<<<< HEAD
 	private String tanggal_mohon;
 	private int id_jenis_surat;
 	private String keterangan;
@@ -26,7 +27,17 @@ public class PengajuanSuratModel {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private String tanggal_selesai_izin;
 	
+=======
+	//private Date tanggal_mohon;
+	private int id_jenis_surat;
+	private String keterangan;
+	private String alasan_izin;
+	@DateTimeFormat(pattern = "YYYY-mm-dd")
+	private Date tanggal_mulai_izin;
+	@DateTimeFormat(pattern = "YYYY-mm-dd	")
+	private Date tanggal_selesai_izin;
+>>>>>>> 40910565475ad48d167e21711e98ff4fd1ea4d6a
 	private int id_matkul_terkait;
-	private int username_pegawai;
+	//private int username_pegawai;
 	private int id_status_surat;
 }
