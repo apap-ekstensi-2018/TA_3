@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.tugasakhir.sisurat.dao.SuratDAO;
 import com.tugasakhir.sisurat.dao.SuratMapper;
 import com.tugasakhir.sisurat.model.JenisSuratModel;
-import com.tugasakhir.sisurat.model.MatakuliahModel;
+import com.tugasakhir.sisurat.model.MataKuliahModel;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

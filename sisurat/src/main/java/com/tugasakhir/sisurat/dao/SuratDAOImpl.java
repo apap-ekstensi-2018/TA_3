@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.tugasakhir.sisurat.model.MahasiswaModel;
-import com.tugasakhir.sisurat.model.MatakuliahModel;
+import com.tugasakhir.sisurat.model.MataKuliahModel;
 import com.tugasakhir.sisurat.model.PegawaiModel;
 
 @Service
@@ -61,22 +61,22 @@ public class SuratDAOImpl implements SuratDAO{
 	}
 	
 	@Override
-	public MatakuliahModel selectMatakuliah(int id){
-		MatakuliahModel matakuliah = 
+	public MataKuliahModel selectMatakuliah(int id){
+		MataKuliahModel matakuliah = 
 				restTemplate.getForObject("https://apap-fasilkom.herokuapp.com//api/matkul/view/id/"+id,
-				MatakuliahModel.class);
+				MataKuliahModel.class);
 		return matakuliah;
 	}
 	
 	@Override
-	public List<MatakuliahModel> selectAllMatakuliah()
+	public List<MataKuliahModel> selectAllMatakuliah()
 	{
-		ResponseEntity<List<MatakuliahModel>> res =
+		ResponseEntity<List<MataKuliahModel>> res =
 				restTemplate.exchange("https://apap-fasilkom.herokuapp.com/api/matkul/viewall",
 				HttpMethod.GET, null,
-				new ParameterizedTypeReference<List<MatakuliahModel>>() {});
+				new ParameterizedTypeReference<List<MataKuliahModel>>() {});
 	
-		List<MatakuliahModel> selectAllMatakuliah = res.getBody(); 
+		List<MataKuliahModel> selectAllMatakuliah = res.getBody(); 
 		return selectAllMatakuliah;
 	}
 }
