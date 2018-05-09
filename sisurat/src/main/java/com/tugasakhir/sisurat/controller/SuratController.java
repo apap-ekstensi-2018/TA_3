@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,5 +55,15 @@ public class SuratController
         model.addAttribute ("pengajuan_surat", pengajuan_surat);
         model.addAttribute("standardDate",new Date());
         return "success-add";
+    }
+    
+    @RequestMapping("/pengajuan/riwayat")
+    public String history(Model model)
+    {
+    	List<JenisSuratModel> jenis_surat = suratDAO.selectJenisSurat();
+    	List <PengajuanSuratModel>pengajuan_surat2 = suratDAO.selectAllPengajuanSurat();
+		model.addAttribute("jenis_surat", jenis_surat);
+		model.addAttribute ("pengajuan_surat2",pengajuan_surat2);
+        return "pengajuan-riwayat";
     }
 }

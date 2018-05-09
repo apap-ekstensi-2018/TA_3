@@ -32,7 +32,11 @@ public class SuratServiceDatabase implements SuratService
 		log.info("Tampilkan data status surat");
 		return suratMapper.selectStatusSurat();
 	}
-	
+	@Override
+	public List<PengajuanSuratModel> selectAllPengajuanSurat() {
+		log.info("Tampilkan data pengajuan surat");
+		return suratMapper.selectAllPengajuanSurat();
+	}
 	@Override
 	public void insertPengajuan (PengajuanSuratModel pengajuan_surat)
     {

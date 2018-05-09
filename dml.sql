@@ -7,3 +7,10 @@ INSERT INTO jenis_surat VALUES (6,'Surat Rekomendasi Beasiswa');
 INSERT INTO jenis_surat VALUES (7,'Transkrip Nilai');
 INSERT INTO jenis_surat VALUES (8,'Surat Pengantar Peminjaman Buku');
 
+
+
+INSERT INTO `status_surat` (`id`, `nama`) VALUES 
+('1', 'Baru Diajukan'),
+('2', 'Ditolak'),
+('3', 'Diproses'),
+('4', 'Selesai');
