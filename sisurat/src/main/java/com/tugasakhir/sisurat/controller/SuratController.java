@@ -27,7 +27,7 @@ public class SuratController
 	@Autowired
 	SuratService suratDAO;
     
-    @RequestMapping("/")
+    @RequestMapping("/home")
     public String index ()
     {
         return "index";
