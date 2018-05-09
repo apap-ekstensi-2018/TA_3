@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.tugasakhir.sisurat.dao.SuratMapper;
 import com.tugasakhir.sisurat.model.JenisSuratModel;
-import com.tugasakhir.sisurat.model.MatakuliahModel;
+import com.tugasakhir.sisurat.model.MataKuliahModel;
 import com.tugasakhir.sisurat.model.PengajuanSuratModel;
 import com.tugasakhir.sisurat.model.StatusSuratModel;
 import com.tugasakhir.sisurat.model.SuratModel;

@@ -1,5 +1,10 @@
 package com.tugasakhir.sisurat.dao;
 
-public class MahasiswaDAO {
+import java.util.List;
 
+import com.tugasakhir.sisurat.model.MahasiswaModel;
+
+public interface MahasiswaDAO {
+	MahasiswaModel selectMahasiswa(String npm);
+	List<MahasiswaModel> selectAllMahasiswa();
 }
