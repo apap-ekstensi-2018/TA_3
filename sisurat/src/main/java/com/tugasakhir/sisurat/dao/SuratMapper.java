@@ -20,6 +20,7 @@ public interface SuratMapper
 	@Select("SELECT * FROM jenis_surat")
 	List<JenisSuratModel> selectJenisSurat();
 	
+
 	@Select("SELECT * FROM status_surat")
 	List<StatusSuratModel> selectStatusSurat();
 	
