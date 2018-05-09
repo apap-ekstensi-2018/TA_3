@@ -1,4 +1,4 @@
-package com.tugasakhir.sisurat.service;
+package com.tugasakhir.sisurat.rest;
 
 import java.util.List;
 
