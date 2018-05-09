@@ -73,10 +73,10 @@
                                     <form action="/pengajuan/tambah/submit" method="post">
 										<div class="row">
                                             <div class="col-md-6">
-                                                <div class="form-group row">
+                                            	    <div class="form-group row">
                                                     <label class="control-label text-right col-md-3">Jenis Surat</label>
                                                     <div class="col-md-9">
-														<select class="form-control" required="required" id="id_jenis" name="jenis_surat" onchange='show()'>
+														<select class="form-control" required="required" id="id_jenis" for="id_jenis_surat" name="jenis_surat" onchange='show()'>
 															<option disabled="disabled" selected="selected">--Pilih Jenis Surat--</option>
 														    <option th:each="jenis : ${jenis_surat}" th:value="${jenis.id}" th:text="${jenis.nama}"></option>
 													    </select>
@@ -87,7 +87,7 @@
 										<div class="row" id="keterangan">
                                             <div class="col-md-6">
                                                 <div class="form-group row">
-                                                    <label class="control-label text-right col-md-3">Keterangan</label>
+                                                    <label class="control-label text-right col-md-3" for="keterangan">Keterangan</label>
                                                     <div class="col-md-9">
                                                         <textarea type="text" class="form-control input-default" name="keterangan"></textarea>
                                                     </div>
@@ -97,7 +97,7 @@
 										<div class="row" id="alasan_izin" style="display: none">
                                             <div class="col-md-6">
                                                 <div class="form-group row">
-                                                    <label class="control-label text-right col-md-3">Alasan Izin</label>
+                                                    <label class="control-label text-right col-md-3" for="alasan_izin">Alasan Izin</label>
                                                     <div class="col-md-9">
                                                         <textarea type="text" class="form-control input-default" name="alasan_izin"></textarea>
                                                     </div>
@@ -108,7 +108,7 @@
 											<div class="row" >
 	                                            <div class="col-md-6">
 	                                                <div class="form-group row">
-	                                                    <label class="control-label text-right col-md-3">Tanggal Izin</label>
+	                                                    <label class="control-label text-right col-md-3" for="tanggal_mulai_izin">Tanggal Izin</label>
 	                                                    <div class="col-md-9">
 	                                                        <input type="date" class="form-control input-default " name="tanggal_mulai_izin" />
 	                                                    </div>
@@ -117,7 +117,7 @@
 	                                            <!--/span-->
 	                                            <div class="col-md-6">
 	                                                <div class="form-group row">
-	                                                    <label class="control-label text-center col-xs-2">s/d</label>
+	                                                    <label class="control-label text-center col-xs-2" for="tanggal_selesai_izin">s/d</label>
 	                                                    <div class="col-md-9">
 	                                                        <input type="date" class="form-control input-default " name="tanggal_selesai_izin" />
 	                                                    </div>
@@ -129,7 +129,7 @@
 										<div class="row" id="matkul_terkait" style="display: none">
                                             <div class="col-md-6">
                                                 <div class="form-group row">
-                                                    <label class="control-label text-right col-md-3">Matakuliah Terkait</label>
+                                                    <label class="control-label text-right col-md-3" for="id_matkul_terkait">Matakuliah Terkait</label>
                                                     <div class="col-md-9">
                                                         <select class="form-control" id="id_matkul_terkait" name="matkul" onchange='show()'>
 															<option>1</option>
