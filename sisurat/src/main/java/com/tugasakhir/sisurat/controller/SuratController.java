@@ -32,12 +32,6 @@ public class SuratController
         return "index";
     }
     
-    @RequestMapping("/login")
-    public String login()
-    {
-        return "form-login";
-    }
-    
     @RequestMapping("/pengajuan/tambah")
     public String pengajuan_add (Model model)
     {
