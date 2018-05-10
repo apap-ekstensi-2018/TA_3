@@ -1,0 +1,5 @@
+package com.tugasakhir.sisurat.controller;
+
+public class MahasiswaController {
+
+}
