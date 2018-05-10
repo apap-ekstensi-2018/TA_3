@@ -38,4 +38,9 @@ public class SuratServiceDatabase implements SuratService
     {
     	suratMapper.insertPengajuan(pengajuan_surat);
     }
+	
+	@Override
+	public int getLastidSurat() {
+		return suratMapper.getLastIdSurat();
+	}
 }
