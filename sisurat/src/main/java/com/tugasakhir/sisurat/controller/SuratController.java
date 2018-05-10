@@ -12,6 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,6 +47,28 @@ public class SuratController {
 		model.addAttribute("pengajuan_surat", new PengajuanSuratModel());
 
 		return "form-pengajuan-tambah";
+//<<<<<<< HEAD
+//    }
+//    
+//    @RequestMapping(value = "/pengajuan/tambah/submit", method = RequestMethod.POST)
+//    public String addSubmit (@ModelAttribute PengajuanSuratModel pengajuan_surat, Model model)
+//    {
+//    	suratDAO.insertPengajuan(pengajuan_surat);
+//        model.addAttribute ("pengajuan_surat", pengajuan_surat);
+//        model.addAttribute("standardDate",new Date());
+//        return "success-add";
+//    }
+//    
+//    @RequestMapping("/pengajuan/riwayat")
+//    public String pengajuan_riwayat(Model model)
+//    {
+//    	List<JenisSuratModel> jenis_surat = suratDAO.selectJenisSurat();
+//    	List <PengajuanSuratModel>pengajuan_surat2 = suratDAO.selectAllPengajuanSurat();
+//		model.addAttribute("jenis_surat", jenis_surat);
+//		model.addAttribute ("pengajuan_surat2",pengajuan_surat2);
+//        return "pengajuan-riwayat";
+//    }
+//=======
 	}
 
 	@RequestMapping("/pengajuan/tambah/submit")
@@ -86,5 +109,6 @@ public class SuratController {
 		model.addAttribute("standardDate", new Date());
 		return "success-add";
 	}
-
+//
+//>>>>>>> develop
 }

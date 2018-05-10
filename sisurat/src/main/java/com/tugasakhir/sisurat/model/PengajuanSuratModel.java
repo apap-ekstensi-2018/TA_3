@@ -32,4 +32,6 @@ public class PengajuanSuratModel {
 	private int id_matkul_terkait;
 	
 	private int id_status_surat;
+	private String jenis_surat;
+	private String status;
 }
