@@ -19,10 +19,7 @@ public interface SuratMapper
 {
 	@Select("SELECT * FROM jenis_surat")
 	List<JenisSuratModel> selectJenisSurat();
-	
-	@Select("SELECT  FROM status_surat")
-	List<StatusSuratModel> selectStatusSurat();
-	
+
 	@Select ("SELECT ps.no_surat"
 			+ " ,js.nama as jenis_surat"
 			+ " ,ps.tanggal_mohon"
@@ -31,8 +28,16 @@ public interface SuratMapper
 			+ " WHERE ps.id_jenis_surat = js.id"
 			+ " AND ps.id_status_surat = ss.id")
 	List<PengajuanSuratModel> selectAllPengajuanSurat();
+
+	@Select("SELECT * FROM status_surat")
+	List<StatusSuratModel> selectStatusSurat();
 	
-	@Insert("Insert into pengajuan_surat (username_pengaju,tanggal_mohon,id_jenis_surat, keterangan,alasan_izin,tanggal_mulai_izin,tanggal_selesai_izin,id_matkul_terkait)"
-			+ "values ({'test','2018-01-01',#{id_jenis_surat},#{keterangan},#{alasan_izin},#{tanggal_mulai_izin},#{tanggal_selesai_izin},#{id_matkul_terkait})")
-	void insertPengajuan (PengajuanSuratModel pengajuan_surat);
+	@Insert("Insert INTO pengajuan_surat ("
+			+ "no_surat, username_pengaju, tanggal_mohon, id_jenis_surat, keterangan, alasan_izin, tanggal_mulai_izin, tanggal_selesai_izin, id_matkul_terkait)"
+			+ "values ("
+			+ "#{no_surat},#{username_pengaju},#{tanggal_mohon},#{id_jenis_surat},#{keterangan},#{alasan_izin},#{tanggal_mulai_izin}, #{tanggal_selesai_izin},#{id_matkul_terkait})")
+void insertPengajuan (PengajuanSuratModel pengajuan_surat);
+	
+	@Select("SELECT id FROM pengajuan_surat ORDER BY id DESC LIMIT 1")
+	int getLastIdSurat();
 }

@@ -27,12 +27,14 @@
 	                    <ul class="navbar-nav my-lg-0">
 	                        <!-- Profile -->
 	                        <li class="nav-item dropdown">
-	                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/images/users/5.jpg" alt="user" class="profile-pic" /></a>
-	                            <div class="dropdown-menu dropdown-menu-right animated zoomIn">
+	                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                            <h2 th:text=" 'Login as ' + ${#httpServletRequest.remoteUser}">Login as</h2>
+	                            </a>
+	                            <!-- <div class="dropdown-menu dropdown-menu-right animated zoomIn">
 	                                <ul class="dropdown-user">
 	                                    <li><a href="/login"><i class="fa fa-power-off"></i> Logout</a></li>
 	                                </ul>
-	                            </div>
+	                            </div> -->
 	                        </li>
 	                    </ul>
 	                </div>
@@ -51,6 +53,11 @@
 	                        <li> <a href="/pengajuan/riwayat" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Daftar Surat</span></a>
 	                        </li>
 	                        <li> <a href="/pengajuan/tambah" aria-expanded="false"><i class="fa fa-wpforms"></i><span class="hide-menu">Ajukan Surat</span></a>
+	                        </li>
+	                        <li>
+	                        <form th:action="@{/logout}" method="post">
+							<input type="submit" value="Sign Out"/>
+							</form>
 	                        </li>
 	                    </ul>
 	                </nav>
