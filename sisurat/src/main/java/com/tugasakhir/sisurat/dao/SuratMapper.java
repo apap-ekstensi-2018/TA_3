@@ -24,13 +24,12 @@ public interface SuratMapper
 	List<StatusSuratModel> selectStatusSurat();
 	
 	@Select ("SELECT ps.no_surat"
-			+ " ,js.jenisa_surat"
-			+ " ,mhs.nama"
-			+ " ,mhs.npm"
-			+ " ,tanggal_mohon"
-			+ " ,pegawai.tanggal_mohon"
-			+ " ,status"
-			+ " FROM pengajuan_surat ps, jenis_surat js, mahasiswa.mhs")
+			+ " ,js.nama as jenis_surat"
+			+ " ,ps.tanggal_mohon"
+			+ " ,ss.nama as status"
+			+ " FROM pengajuan_surat ps, jenis_surat js, status_surat ss"
+			+ " WHERE ps.id_jenis_surat = js.id"
+			+ " AND ps.id_status_surat = ss.id")
 	List<PengajuanSuratModel> selectAllPengajuanSurat();
 	
 	@Insert("Insert into pengajuan_surat (username_pengaju,tanggal_mohon,id_jenis_surat, keterangan,alasan_izin,tanggal_mulai_izin,tanggal_selesai_izin,id_matkul_terkait)"

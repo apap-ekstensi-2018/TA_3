@@ -58,7 +58,7 @@ public class SuratController
     }
     
     @RequestMapping("/pengajuan/riwayat")
-    public String history(Model model)
+    public String pengajuan_riwayat(Model model)
     {
     	List<JenisSuratModel> jenis_surat = suratDAO.selectJenisSurat();
     	List <PengajuanSuratModel>pengajuan_surat2 = suratDAO.selectAllPengajuanSurat();
