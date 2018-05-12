@@ -11,9 +11,15 @@ import com.tugasakhir.sisurat.service.MahasiswaService;
 @RestController
 @RequestMapping("/rest")
 public class MataKuliahRestController {
+<<<<<<< HEAD
  @Autowired
  MahasiswaService mahasiswaService;
  
+=======
+// @Autowired
+// MahasiswaService mahasiswaService;
+// 
+>>>>>>> 317e1b11847b22324357638b20a0ba80bc653dca
 // @RequestMapping("pengajuan/riwayat/{npm}")
 // public MahasiswaModel viewRiwayat(@PathVariable(value="npm") String npm) {
 //	 MahasiswaModel mahasiswaModel = mahasiswaService.selectMahasiswa(npm);

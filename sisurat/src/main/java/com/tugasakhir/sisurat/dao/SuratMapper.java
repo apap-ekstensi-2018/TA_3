@@ -32,6 +32,7 @@ public interface SuratMapper
 	@Select("SELECT * FROM status_surat")
 	List<StatusSuratModel> selectStatusSurat();
 	
+
 	@Insert("Insert INTO pengajuan_surat ("
 			+ "no_surat, username_pengaju, tanggal_mohon, id_jenis_surat, keterangan, alasan_izin, tanggal_mulai_izin, tanggal_selesai_izin, id_matkul_terkait)"
 			+ "values ("
