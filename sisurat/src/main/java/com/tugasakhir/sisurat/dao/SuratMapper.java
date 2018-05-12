@@ -65,6 +65,11 @@ public interface SuratMapper
 	
 	@Select("SELECT * FROM pengajuan_surat where id=#{id}")
 	PengajuanSuratModel selectPengajuanSuratById(int id);
+
+	@Select("SELECT * FROM jenis_surat where id=#{id}")
+	JenisSuratModel selectJenisSuratById(int id);
 	
-	
+
+	@Select("SELECT * FROM status_surat where id=#{id}")
+	StatusSuratModel selectStatusSuratById(int id);
 }
