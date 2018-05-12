@@ -52,4 +52,8 @@ public class SuratServiceDatabase implements SuratService
 	public PengajuanSuratModel selectPengajuan(int idSurat) {
 		return suratMapper.selectPengajuanSuratById(idSurat);
 	}
+	@Override
+	public boolean insertDokumenName(String nama_dokumen, int id) {
+		return suratMapper.insertNamaDokumen(nama_dokumen, id);
+	}
 }

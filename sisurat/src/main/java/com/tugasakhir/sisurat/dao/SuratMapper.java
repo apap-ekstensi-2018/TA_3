@@ -44,4 +44,7 @@ public interface SuratMapper
 	
 	@Select("SELECT * FROM pengajuan_surat where id=#{id}")
 	PengajuanSuratModel selectPengajuanSuratById(int id);
+	
+	@Update("UPDATE pengajuan_surat SET nama_dokumen=#{nama_dokumen} WHERE id=#{id}")
+    boolean insertNamaDokumen(@Param("nama_dokumen")String nama_dokumen, @Param("id")int id);
 }
