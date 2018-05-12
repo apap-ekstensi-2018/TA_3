@@ -42,87 +42,17 @@
             <!-- Bread crumb -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-primary">Daftar Surat</h3> </div>
+                    <h3 class="text-primary">Daftar Semua Surat</h3> </div>
                 <div class="col-md-7 align-self-center">
                 </div>
             </div>
             <!-- End Bread crumb -->
             <!-- Container fluid  -->
             <div class="container-fluid">
-				<!-- /# column -->
-                        <div class="card">
-                            <div class="card-title">
-                                <h4>Pencarian </h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered">
-                                        <tbody>
-                                            <tr>
-												<th scope="row">Nama Pengaju</th>
-												<th>
-													<div class="row col-md-10">
-														<div class="col-md-5">
-															<label class="control-label">[Name From System]</label>
-														</div>
-													</div>	
-												</th>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Jenis Surat</th>
-                                                <td>
-													<div class="row col-md-10">
-														<div class="col-md-5">
-															<select class="form-control" required="required" id="id_jenis" name="jenis_surat" onchange='show()'>
-																<option disabled="disabled" selected="selected">--Pilih Jenis Surat--</option>
-															    <option th:each="jenis : ${jenis_surat}" th:value="${jenis.id}" th:text="${jenis.nama}"></option>
-														    </select>
-														</div>
-													</div>	
-												</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Tanggal Pengajuan</th>
-												<td>
-													<div class="row col-md-10">
-														<div class="col-md-5">
-															<div class="form-group row">
-																<div class="col-md-9">
-																	<input type="date" class="form-control input-default " name="tanggal_mulai_izin" />
-																</div>
-																<label class="control-label text-right col-md-3">s/d</label>
-															</div>
-														</div>
-														<!--/span-->
-														<div class="col-md-5">
-															<div class="form-group row">
-																<div class="col-md-9">
-																	<input type="date" class="form-control input-default " name="tanggal_selesai_izin" />
-																</div>
-															</div>
-														</div>
-														<!--/span-->
-													</div>
-												</td>
-                                            </tr>
-											<tr>
-                                                <td colspan="2">
-                                                    <button type="submit" class="btn btn-info"> <i class="fa fa-search"></i> Cari</button>
-												</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    <!-- /# column -->
+
 					<div class="card">
                       <div class="card-body">
-                          <button type="submit" class="btn btn-info"> <i class="fa fa-envelope"></i> Baru Diajukan</button>
-                          <button type="submit" class="btn btn-info"> <i class="fa fa-close"></i> Ditolak</button>
-                          <button type="submit" class="btn btn-info"> <i class="fa fa-external-link-square"></i> Diproses</button>
-                          <button type="submit" class="btn btn-info"> <i class="fa fa-thumbs-up"></i> Selesai</button>
-                          <div class="table-responsive m-t-40">
+                             <div class="table-responsive m-t-40">
                                <table id="myTable" class="table table-bordered table-striped">
                                   <thead>
                                       <tr>
@@ -133,21 +63,19 @@
 										<th>Tanggal Permohonan</th>
 										<th>Nama Pegawai</th>
 										<th>Status Surat</th>
-										<th>Operasi</th>
-                                      </tr>
+								      </tr>
                                   </thead>
                                   <tbody>
-                                      <tr th:each="pengajuan_surat,iterationStatus:${pengajuan_surat2}">
+                                    <tr th:each="pengajuan_surat,iterationStatus:${pengajuan_surat2}">
                                           <td th:text="${pengajuan_surat.no_surat}"></td>
                                           <td th:text="${pengajuan_surat.jenis_surat}"></td>
-                                          
-                                          <td th:text="${pengajuan_surat.jenis_surat}"></td>
-                                          <td ></td>
+                                          <td >sss</td>
+                                         <td th:text="${pengajuan_surat.username_pengaju}"></td>
+                                         
                                           <td th:text="${pengajuan_surat.tanggal_mohon}"></td>
-                                          <td ></td>
+                                          <td th:text="${pengajuan_surat.username_pegawai}"></td>
                                           <td th:text="${pengajuan_surat.status}"></td>
-                                          <td><a href="'pengajuan/riwayat/'+ ${pengajuan_surat.id}"></a><button type="submit" class="btn btn-info"> <i class="fa fa-eye"></i> Detail</button></td>
-                                      </tr>
+                                           </tr>  
                                   </tbody>
                               </table>
                           </div>

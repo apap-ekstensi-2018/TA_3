@@ -44,5 +44,13 @@ public class PageController {
 		model.addAttribute("pengajuan_surat", new PengajuanSuratModel());
 		return "form-pengajuan-tambah";
 	}
+	@RequestMapping("/pengajuan/viewall")
+	public String viewall(Model model) {
+		List<PengajuanSuratModel> allSurat = suratService.selectAllPengajuanSurat();
+		model.addAttribute("pengajuan_surat2", allSurat);
+		
+		return "viewall-surat";
+	}
+	
 	
 }

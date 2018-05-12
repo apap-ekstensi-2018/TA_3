@@ -37,6 +37,6 @@ public class PengajuanSuratModel {
 	private String status;
 	
 	private StatusSuratModel status_surat;
-	
+	private UserAccountModel username;
 
 }
