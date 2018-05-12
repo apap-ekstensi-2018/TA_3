@@ -7,14 +7,6 @@
 #### URL : `/api/surat/view/{no_surat}`
 #### Method : `GET`
 
-### Response
-```json
-{
-  status: 200,
-  body: true
-}
-```
-
 The above command returns JSON structured like this:
 ```json
 {
