@@ -17,4 +17,5 @@ public interface SuratService
 	void insertPengajuan(PengajuanSuratModel pengajuan_surat);
 	
 	int getLastidSurat();
+	PengajuanSuratModel selectPengajuan (int idSurat);
 }

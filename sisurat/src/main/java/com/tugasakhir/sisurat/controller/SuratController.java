@@ -73,4 +73,13 @@ public class SuratController {
 		model.addAttribute("standardDate", new Date());
 		return "success-add";
 	}
+	
+	
+	 @RequestMapping("/pengajuan/riwayat/{idSurat}")
+	 public String viewPath (Model model, @PathVariable(value = "idSurat") String idSurat){
+		 PengajuanSuratModel pengajuanSuratModel = suratDAO.selectPengajuan(Integer.parseInt(idSurat));
+		 
+		 model.addAttribute("pengajuan_surat", pengajuanSuratModel);
+		 return "pengajuan-riwayat-detail";	    
+	 }
 }
