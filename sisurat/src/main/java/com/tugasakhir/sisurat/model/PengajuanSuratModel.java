@@ -33,10 +33,13 @@ public class PengajuanSuratModel {
 	
 	private int id_status_surat;
 	private String username_pegawai;
-	private String jenis_surat;
 	private String status;
 	
 	private StatusSuratModel status_surat;
+<<<<<<< HEAD
 	private UserAccountModel username;
 
+=======
+	private JenisSuratModel jenis_surat;
+>>>>>>> develop
 }
