@@ -139,13 +139,13 @@
                                   <tbody>
                                       <tr th:each="pengajuan_surat,iterationStatus:${list_pengajuan_surat}">
                                           <td th:text="${pengajuan_surat.no_surat}"></td>
-                                          <td th:text="${pengajuan_surat.jenis_surat}"></td>
-                                          <td th:text="${mahasiswa.nama}"></td>
-                                          <td th:text="${mahasiswa.npm}"></td>
+                                          <td th:text="${pengajuan_surat.jenis_surat.nama}"></td>
+                                          <td th:text="${pengajuan_surat.pengaju.nama}"></td>
+                                          <td th:text="${pengajuan_surat.pengaju.npm}"></td>
                                           <td th:text="${pengajuan_surat.tanggal_mohon}"></td>
-                                          <td></td>
-                                          <td th:text="${pengajuan_surat.status}"></td>
-                                          <td><a href="'pengajuan/riwayat/'+ ${pengajuan_surat.id}"></a><button type="submit" class="btn btn-info"> <i class="fa fa-eye"></i> Detail</button></td>
+                                          <td th:text="${pengajuan_surat.pegawai==null}?'-':(${pengajuan_surat.pegawai.nama})"></td>
+                                          <td th:text="${pengajuan_surat.status_surat.nama}"></td>
+                                          <td><a th:href="'/pengajuan/riwayat/'+${pengajuan_surat.id}"><button type="submit" class="btn btn-info"> <i class="fa fa-eye"></i> Detail</button></a></td>
                                       </tr>
                                   </tbody>
                               </table>

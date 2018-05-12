@@ -1,5 +1,6 @@
 package com.tugasakhir.sisurat.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +52,14 @@ public class SuratServiceDatabase implements SuratService
 	@Override
 	public List<PengajuanSuratModel> selectPengajuanSuratByMhs(String name) {
 		log.info("Tampilkan data status surat");
-		return suratMapper.selectPengajuanSuratByMhs(name);
+		List<PengajuanSuratModel> pengajuanSuratModels = suratMapper.selectPengajuanSuratByMhs(name);
+		for(int i=0;i<pengajuanSuratModels.size();i++) {
+			JenisSuratModel jenisSuratModel = suratMapper.selectJenisSuratById(((ArrayList<PengajuanSuratModel>)pengajuanSuratModels).get(i).getId_jenis_surat());
+			pengajuanSuratModels.get(i).setJenis_surat(jenisSuratModel);
+			StatusSuratModel statusSuratModel = suratMapper.selectStatusSuratById(pengajuanSuratModels.get(i).getId_status_surat());
+			pengajuanSuratModels.get(i).setStatus_surat(statusSuratModel);
+		}
+		return pengajuanSuratModels;
 	}
 	
 	@Override
