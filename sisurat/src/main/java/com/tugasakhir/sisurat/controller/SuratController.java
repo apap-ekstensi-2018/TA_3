@@ -37,8 +37,8 @@ public class SuratController {
 	public String addSubmit(@ModelAttribute("pengajuan_surat") PengajuanSuratModel pengajuan_surat, Model model) {
 		if (pengajuan_surat.getAlasan_izin().isEmpty()) {
 			pengajuan_surat.setAlasan_izin("");
-			pengajuan_surat.setTanggal_mulai_izin("1970-05-12");
-			pengajuan_surat.setTanggal_selesai_izin("1970-05-12");
+			pengajuan_surat.setTanggal_mulai_izin(null);
+			pengajuan_surat.setTanggal_selesai_izin(null);
 			pengajuan_surat.setId_matkul_terkait(null);
 		}
 //		System.out.println("ID SURAT: "+pengajuan_surat.getId_jenis_surat());
@@ -58,7 +58,6 @@ public class SuratController {
 		
 		// set username pengaju
 		pengajuan_surat.setUsername_pengaju(name);
-		pengajuan_surat.setUsername_pegawai(null);
 
 		// get current date
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -74,4 +73,13 @@ public class SuratController {
 		
 		return "form-pengajuan-tambah";
 	}
+	
+	
+	 @RequestMapping("/pengajuan/riwayat/{idSurat}")
+	 public String viewPath (Model model, @PathVariable(value = "idSurat") String idSurat){
+		 PengajuanSuratModel pengajuanSuratModel = suratDAO.selectPengajuan(Integer.parseInt(idSurat));
+		 
+		 model.addAttribute("pengajuan_surat", pengajuanSuratModel);
+		 return "pengajuan-riwayat-detail";	    
+	 }
 }

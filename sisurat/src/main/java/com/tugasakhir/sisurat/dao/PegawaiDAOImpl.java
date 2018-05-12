@@ -22,19 +22,32 @@ public class PegawaiDAOImpl implements PegawaiDAO{
 	
 	@Override
 	public PegawaiModel selectPegawai(String nip) {
-		PegawaiModel pegawai = 
-				restTemplate.getForObject
-				("https://apap-fasilkom.herokuapp.com/api/staf/view/nip/"+nip,
-					PegawaiModel.class);
-		if(nip.equalsIgnoreCase(pegawai.getNip())) return pegawai;
-		else{
+		PegawaiModel pegawai = null;
+		try {
+			pegawai = 
+					restTemplate.getForObject
+					("https://apap-fasilkom.herokuapp.com/api/staf/view/nip/"+nip,
+						PegawaiModel.class);
+			if(nip.equalsIgnoreCase(pegawai.getNip())) {
+				pegawai.set_staf(true);
+				return pegawai;
+			}
+		}catch(org.springframework.web.client.HttpServerErrorException e) {
+			
+		}
+		try {
+		
 			pegawai = 
 					restTemplate.getForObject
 					("https://apap-fasilkom.herokuapp.com/api/dosen/view/nip/"+nip,
 						PegawaiModel.class);
-			
+			pegawai.set_staf(false);
 			return pegawai;
-		}	
+		}catch(org.springframework.web.client.HttpServerErrorException e) {
+			
+		}
+		return pegawai;
+	
 	}
 	
 	@Override

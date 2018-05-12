@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PengajuanSuratModel {
-	
+	private int id;
 	private String no_surat;
 	private String username_pengaju;
 	
@@ -33,7 +33,10 @@ public class PengajuanSuratModel {
 	
 	private Integer id_status_surat;
 	private String username_pegawai;
-	private String jenis_surat;
 	private String status;
-
+	
+	private StatusSuratModel status_surat;
+	private JenisSuratModel jenis_surat;
+	private MahasiswaModel pengaju;
+	private PegawaiModel pegawai;
 }

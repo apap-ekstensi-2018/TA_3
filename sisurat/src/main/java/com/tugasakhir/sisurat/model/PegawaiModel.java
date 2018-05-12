@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class PegawaiModel {
+public class PegawaiModel{
 	private int id;
 	private String nip;
 	private String username;

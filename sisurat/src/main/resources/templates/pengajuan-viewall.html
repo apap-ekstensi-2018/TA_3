@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <title>SI- Surat</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="/css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+
+    <link href="/css/lib/calendar2/semantic.ui.min.css" rel="stylesheet">
+    <link href="/css/lib/calendar2/pignose.calendar.min.css" rel="stylesheet">
+    <link href="/css/lib/owl.carousel.min.css" rel="stylesheet" />
+    <link href="/css/lib/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="/css/helper.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
+    <!--[if lt IE 9]>
+    <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body class="fix-header fix-sidebar">
+    <!-- Preloader - style you can find in spinners.css -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+			<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <!-- Main wrapper  -->
+    <div id="main-wrapper">
+		<div th:replace = "fragments/fragment :: menu" ></div>
+        <!-- Page wrapper  -->
+        <div class="page-wrapper">
+            <!-- Bread crumb -->
+            <div class="row page-titles">
+                <div class="col-md-5 align-self-center">
+                    <h3 class="text-primary">Daftar Surat</h3> </div>
+                <div class="col-md-7 align-self-center">
+                </div>
+            </div>
+            <!-- End Bread crumb -->
+            <!-- Container fluid  -->
+            <div class="container-fluid">
+				<!-- /# column -->
+                        <div class="card">
+                            <div class="card-title">
+                                <h4>Pencarian </h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                            <tr>
+												<th scope="row">Nama Pegawai</th>
+												<th>
+													<div class="row col-md-10">
+														<div class="col-md-5">
+															<label class="control-label">[Name From System]</label>
+														</div>
+													</div>	
+												</th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Jenis Surat</th>
+                                                <td>
+													<div class="row col-md-10">
+														<div class="col-md-5">
+															<select class="form-control" required="required" id="id_jenis" name="jenis_surat" onchange='show()'>
+																<option disabled="disabled" selected="selected">--Pilih Jenis Surat--</option>
+															    <option th:each="jenis : ${jenis_surat}" th:value="${jenis.id}" th:text="${jenis.nama}"></option>
+														    </select>
+														</div>
+													</div>	
+												</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Tanggal Pengajuan</th>
+												<td>
+													<div class="row col-md-10">
+														<div class="col-md-5">
+															<div class="form-group row">
+																<div class="col-md-9">
+																	<input type="date" class="form-control input-default " name="tanggal_mulai_izin" />
+																</div>
+																<label class="control-label text-right col-md-3">s/d</label>
+															</div>
+														</div>
+														<!--/span-->
+														<div class="col-md-5">
+															<div class="form-group row">
+																<div class="col-md-9">
+																	<input type="date" class="form-control input-default " name="tanggal_selesai_izin" />
+																</div>
+															</div>
+														</div>
+														<!--/span-->
+													</div>
+												</td>
+                                            </tr>
+											<tr>
+                                                <td colspan="2">
+                                                    <button type="submit" class="btn btn-info"> <i class="fa fa-search"></i> Cari</button>
+												</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- /# column -->
+					<div class="card">
+                      <div class="card-body">
+                          <button type="submit" class="btn btn-info"> <i class="fa fa-envelope"></i> Baru Diajukan</button>
+                          <button type="submit" class="btn btn-info"> <i class="fa fa-close"></i> Ditolak</button>
+                          <button type="submit" class="btn btn-info"> <i class="fa fa-external-link-square"></i> Diproses</button>
+                          <button type="submit" class="btn btn-info"> <i class="fa fa-thumbs-up"></i> Selesai</button>
+                          <div class="table-responsive m-t-40">
+                               <table id="myTable" class="table table-bordered table-striped">
+                                  <thead>
+                                      <tr>
+                                        <th>Nomor Surat</th>
+										<th>Jenis Surat</th>
+										<th>Nama Mahasiswa</th>
+										<th>NPM Mahasiswa</th>
+										<th>Tanggal Permohonan</th>
+										<th>Nama Pegawai</th>
+										<th>Status Surat</th>
+										<th>Operasi</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr th:each="pengajuan_surat,iterationStatus:${list_pengajuan_surat}">
+                                          <td th:text="${pengajuan_surat.no_surat}"></td>
+                                          <td th:text="${pengajuan_surat.jenis_surat}"></td>
+                                          <td></td>
+                                          <td></td>
+                                          <td th:text="${pengajuan_surat.tanggal_mohon}"></td>
+                                          <td th:text="${pegawai.nama}"></td>
+                                          <td th:text="${pengajuan_surat.status}"></td>
+                                          <td><a href="'pengajuan/riwayat/'+ ${pengajuan_surat.id}"></a><button type="submit" class="btn btn-info"> <i class="fa fa-eye"></i> Detail</button></td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                   </div>
+                <!-- End PAge Content -->
+            </div>
+            <!-- End Container fluid  -->
+            <!-- footer -->
+            <footer class="footer"> © 2018 All rights reserved. Template designed by <a href="https://colorlib.com">Colorlib</a></footer>
+            <!-- End footer -->
+        </div>
+        <!-- End Page wrapper  -->
+    </div>
+    <!-- End Wrapper -->
+    <!-- All Jquery -->
+    <script src="/js/lib/jquery/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="/js/lib/bootstrap/js/popper.min.js"></script>
+    <script src="/js/lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="/js/jquery.slimscroll.js"></script>
+    <!--Menu sidebar -->
+    <script src="/js/sidebarmenu.js"></script>
+    <!--stickey kit -->
+    <script src="/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <!--Custom JavaScript -->
+
+
+    <!-- Amchart -->
+     <script src="/js/lib/morris-chart/raphael-min.js"></script>
+    <script src="/js/lib/morris-chart/morris.js"></script>
+    <script src="/js/lib/morris-chart/dashboard1-init.js"></script>
+
+
+	<script src="/js/lib/calendar-2/moment.latest.min.js"></script>
+    <!-- scripit init-->
+    <script src="/js/lib/calendar-2/semantic.ui.min.js"></script>
+    <!-- scripit init-->
+    <script src="/js/lib/calendar-2/prism.min.js"></script>
+    <!-- scripit init-->
+    <script src="/js/lib/calendar-2/pignose.calendar.min.js"></script>
+    <!-- scripit init-->
+    <script src="/js/lib/calendar-2/pignose.init.js"></script>
+
+    <script src="/js/lib/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/js/lib/owl-carousel/owl.carousel-init.js"></script>
+    <script src="/js/scripts.js"></script>
+    <!-- scripit init-->
+
+    <script src="/js/custom.min.js"></script>
+	    <script src="/js/lib/datatables/datatables.min.js"></script>
+    <script src="/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="/js/lib/datatables/cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="/js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="/js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+    <script src="/js/lib/datatables/datatables-init.js"></script>
+
+</body>
+
+</html>
