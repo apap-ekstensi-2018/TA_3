@@ -59,11 +59,11 @@
                                     <table class="table table-bordered">
                                         <tbody>
                                             <tr>
-												<th scope="row">Nama Pengaju</th>
+												<th scope="row">Nama Pegawai</th>
 												<th>
 													<div class="row col-md-10">
 														<div class="col-md-5">
-															<label class="control-label" th:text="${mahasiswa.nama}"></label>
+															<label class="control-label">[Name From System]</label>
 														</div>
 													</div>	
 												</th>
@@ -143,7 +143,7 @@
                                           <td th:text="${mahasiswa.nama}"></td>
                                           <td th:text="${mahasiswa.npm}"></td>
                                           <td th:text="${pengajuan_surat.tanggal_mohon}"></td>
-                                          <td></td>
+                                          <td ></td>
                                           <td th:text="${pengajuan_surat.status}"></td>
                                           <td><a href="'pengajuan/riwayat/'+ ${pengajuan_surat.id}"></a><button type="submit" class="btn btn-info"> <i class="fa fa-eye"></i> Detail</button></td>
                                       </tr>

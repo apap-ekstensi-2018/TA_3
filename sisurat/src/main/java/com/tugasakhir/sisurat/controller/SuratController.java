@@ -59,7 +59,6 @@ public class SuratController {
 		
 		// set username pengaju
 		pengajuan_surat.setUsername_pengaju(name);
-		pengajuan_surat.setUsername_pegawai(null);
 
 		// get current date
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -72,13 +71,5 @@ public class SuratController {
 		model.addAttribute("pengajuan_surat", pengajuan_surat);
 		model.addAttribute("standardDate", new Date());
 		return "success-add";
-	}
-	
-	@RequestMapping("/pengajuan/riwayat")
-	public String history(Model model) {
-		List<JenisSuratModel> jenis_surat = suratDAO.selectJenisSurat();
-		model.addAttribute("jenis_surat", jenis_surat);
-		model.addAttribute("pengajuan_surat", new PengajuanSuratModel());
-		return "pengajuan-riwayat";
 	}
 }

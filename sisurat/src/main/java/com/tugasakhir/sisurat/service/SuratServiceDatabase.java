@@ -47,4 +47,9 @@ public class SuratServiceDatabase implements SuratService
 	public int getLastidSurat() {
 		return suratMapper.getLastIdSurat();
 	}
+	@Override
+	public List<PengajuanSuratModel> selectPengajuanSuratByMhs(String name) {
+		log.info("Tampilkan data status surat");
+		return suratMapper.selectPengajuanSuratByMhs(name);
+	}
 }

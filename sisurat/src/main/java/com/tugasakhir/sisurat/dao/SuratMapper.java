@@ -24,11 +24,22 @@ public interface SuratMapper
 			+ " ,js.nama as jenis_surat"
 			+ " ,ps.tanggal_mohon"
 			+ " ,ss.nama as status"
+			+ " ,ps.username_pegawai"
+			+ " FROM pengajuan_surat ps, jenis_surat js, status_surat ss"
+			+ " WHERE ps.id_jenis_surat = js.id"
+			+ " AND ps.id_status_surat = ss.id"
+			+ " AND username_pengaju=#{username}")
+	List<PengajuanSuratModel> selectPengajuanSuratByMhs(String username);
+
+	@Select ("SELECT ps.no_surat"
+			+ " ,js.nama as jenis_surat"
+			+ " ,ps.tanggal_mohon"
+			+ " ,ss.nama as status"
 			+ " FROM pengajuan_surat ps, jenis_surat js, status_surat ss"
 			+ " WHERE ps.id_jenis_surat = js.id"
 			+ " AND ps.id_status_surat = ss.id")
 	List<PengajuanSuratModel> selectAllPengajuanSurat();
-
+	
 	@Select("SELECT * FROM status_surat")
 	List<StatusSuratModel> selectStatusSurat();
 	
