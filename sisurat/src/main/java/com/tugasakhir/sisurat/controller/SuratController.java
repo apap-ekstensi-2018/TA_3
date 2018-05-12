@@ -33,14 +33,6 @@ public class SuratController {
 	@Autowired
 	SuratService suratDAO;
 
-	@RequestMapping("/pengajuan/tambah")
-	public String pengajuan_add(Model model) {
-		List<JenisSuratModel> jenis_surat = suratDAO.selectJenisSurat();
-		model.addAttribute("jenis_surat", jenis_surat);
-		model.addAttribute("pengajuan_surat", new PengajuanSuratModel());
-		return "form-pengajuan-tambah";
-	}
-
 	@RequestMapping("/pengajuan/tambah/submit")
 	public String addSubmit(@ModelAttribute("pengajuan_surat") PengajuanSuratModel pengajuan_surat, Model model) {
 		if (pengajuan_surat.getAlasan_izin().isEmpty()) {
