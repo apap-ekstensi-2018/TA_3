@@ -47,4 +47,10 @@ public class SuratServiceDatabase implements SuratService
 	public int getLastidSurat() {
 		return suratMapper.getLastIdSurat();
 	}
+	@Override
+	public SuratModel selectSurat(String no_surat) {
+		log.info ("select surat with no_surat {}", no_surat);
+        return suratMapper.selectSurat(no_surat);
+		
+	}
 }

@@ -2,12 +2,14 @@ package com.tugasakhir.sisurat.dao;
 
 import java.util.List;
 
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+
 
 import com.tugasakhir.sisurat.model.JenisSuratModel;
 import com.tugasakhir.sisurat.model.PengajuanSuratModel;
@@ -28,6 +30,16 @@ public interface SuratMapper
 			+ " WHERE ps.id_jenis_surat = js.id"
 			+ " AND ps.id_status_surat = ss.id")
 	List<PengajuanSuratModel> selectAllPengajuanSurat();
+	
+	@Select ("SELECT ps.username_pengaju as id_mahasiswa"
+			+ " ,js.nama as jenis_surat"
+			+ " ,ps.keterangan"
+			+ " ,ss.nama as status_surat"
+			+ " FROM pengajuan_surat ps, jenis_surat js, status_surat ss"
+			+ " WHERE ps.id_jenis_surat = js.id"
+			+ " AND ps.id_status_surat = ss.id"
+			+ " AND ps.no_surat = #{no_surat}")
+	 SuratModel selectSurat (@Param("no_surat") String no_surat);
 
 	@Select("SELECT * FROM status_surat")
 	List<StatusSuratModel> selectStatusSurat();
