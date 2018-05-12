@@ -60,19 +60,22 @@ public class PageController {
 		
 		List<PengajuanSuratModel> list_pengajuan_surat = suratService.selectPengajuanSuratByMhs(username);
 		MahasiswaModel mahasiswa = mahasiswaService.selectMahasiswa(username);
-		PegawaiModel pegawai = pegawaiService.selectPegawai(username);
-		
 		model.addAttribute("list_pengajuan_surat", list_pengajuan_surat);
 		model.addAttribute("mahasiswa", mahasiswa);
-		model.addAttribute("pegawai",pegawai);
 		return "pengajuan-riwayat";
 	}
 	
 	@RequestMapping("/pengajuan/viewall")
 	public String viewall(Model model) {
-		List<PengajuanSuratModel> list_pengajuan_surat = suratService.selectAllPengajuanSurat();
+		// get current user logged
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = auth.getName();
+		log.info(auth.getName());
 		
+		List<PengajuanSuratModel> list_pengajuan_surat = suratService.selectAllPengajuanSurat();
+		PegawaiModel pegawai = pegawaiService.selectPegawai(username);
 		model.addAttribute("list_pengajuan_surat", list_pengajuan_surat);
+		model.addAttribute("pegawai",pegawai);
 		return "pengajuan-viewall";
 	}
 	
