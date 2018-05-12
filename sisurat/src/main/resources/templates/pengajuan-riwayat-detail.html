@@ -63,7 +63,7 @@
 												<th>
 													<div class="row col-md-12">
 														<div class="col-md-12">
-															<label class="control-label" th:text="${pengajuan_surat.username_pengaju}">David Elkana Sitompul</label>
+															<label class="control-label" th:text="${pengajuan_surat.pengaju.nama}">David Elkana Sitompul</label>
 														</div>
 													</div>	
 												</th>
@@ -94,7 +94,7 @@
 												<th>
 													<div class="row col-md-12">
 														<div class="col-md-12">
-															<!-- <label class="control-label" th:text="${pengajuan_surat.id_mata_kuliah}">Basdat</label> -->
+															<label class="control-label" th:text="${pengajuan_surat.mata_kuliah==null}?'-':${pengajuan_surat.mata_kuliah.nama_matkul}">Basdat</label>
 														</div>
 													</div>	
 												</th>
@@ -135,6 +135,16 @@
 													<div class="row col-md-12">
 														<div class="col-md-12">
 															<label class="control-label" th:text="${pengajuan_surat.status_surat.nama}"></label>
+														</div>
+													</div>	
+												</th>
+                                            </tr> 
+                                            <tr>
+												<th scope="row">Pemeriksa permonohan : </th>
+												<th>
+													<div class="row col-md-12">
+														<div class="col-md-12">
+															<label class="control-label" th:text="${pengajuan_surat.pegawai==null}?'-':${pengajuan_surat.pegawai.nama}"></label>
 														</div>
 													</div>	
 												</th>
