@@ -76,4 +76,12 @@ public class SuratController {
 		model.addAttribute("standardDate", new Date());
 		return "success-add";
 	}
+	
+	@RequestMapping("/pengajuan/riwayat")
+	public String history(Model model) {
+		List<JenisSuratModel> jenis_surat = suratDAO.selectJenisSurat();
+		model.addAttribute("jenis_surat", jenis_surat);
+		model.addAttribute("pengajuan_surat", new PengajuanSuratModel());
+		return "pengajuan-riwayat";
+	}
 }

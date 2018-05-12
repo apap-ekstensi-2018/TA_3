@@ -14,9 +14,9 @@ public class MataKuliahRestController {
  @Autowired
  MahasiswaService mahasiswaService;
  
- @RequestMapping("pengajuan/riwayat/{npm}")
- public MahasiswaModel viewRiwayat(@PathVariable(value="npm") String npm) {
-	 MahasiswaModel mahasiswaModel = mahasiswaService.selectMahasiswa(npm);
-	 return mahasiswaModel;
- }
+// @RequestMapping("pengajuan/riwayat/{npm}")
+// public MahasiswaModel viewRiwayat(@PathVariable(value="npm") String npm) {
+//	 MahasiswaModel mahasiswaModel = mahasiswaService.selectMahasiswa(npm);
+//	 return mahasiswaModel;
+// }
 }
