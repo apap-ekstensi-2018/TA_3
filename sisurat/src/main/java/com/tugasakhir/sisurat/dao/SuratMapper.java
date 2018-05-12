@@ -29,6 +29,16 @@ public interface SuratMapper
 			+ " AND ps.id_status_surat = ss.id")
 	List<PengajuanSuratModel> selectAllPengajuanSurat();
 
+	@Select ("SELECT ps.username_pengaju as id_mahasiswa"
+			+ " ,js.nama as jenis_surat"
+			+ " ,ps.keterangan"
+			+ " ,ss.nama as status_surat"
+			+ " FROM pengajuan_surat ps, jenis_surat js, status_surat ss"
+			+ " WHERE ps.id_jenis_surat = js.id"
+			+ " AND ps.id_status_surat = ss.id"
+			+ " AND ps.no_surat = #{no_surat}")
+	 SuratModel selectSurat (@Param("no_surat") String no_surat);
+
 	@Select("SELECT * FROM status_surat")
 	List<StatusSuratModel> selectStatusSurat();
 	
@@ -44,7 +54,6 @@ public interface SuratMapper
 	
 	@Select("SELECT * FROM pengajuan_surat where id=#{id}")
 	PengajuanSuratModel selectPengajuanSuratById(int id);
-	
 
 	@Select("SELECT * FROM jenis_surat where id=#{id}")
 	JenisSuratModel selectJenisSuratById(int id);
