@@ -11,7 +11,7 @@ import com.tugasakhir.sisurat.model.JenisSuratModel;
 import com.tugasakhir.sisurat.model.PengajuanSuratModel;
 import com.tugasakhir.sisurat.service.SuratService;
 
-@Controller
+
 public class PageController {
 	
 	@Autowired
