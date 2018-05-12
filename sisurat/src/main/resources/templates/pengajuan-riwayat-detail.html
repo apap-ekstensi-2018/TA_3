@@ -11,7 +11,7 @@
     <!-- Favicon icon -->
     <title>SI- Surat</title>
     <!-- Bootstrap Core CSS -->
-    <link href="css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
 
     <link href="/css/lib/calendar2/semantic.ui.min.css" rel="stylesheet">
@@ -42,9 +42,9 @@
             <!-- Bread crumb -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-primary">Detail Surat</h3>
-                    </div>
-                    <br/>
+                    <h3 class="text-primary">Detail Pengajuan Surat</h3> </div>
+                <div class="col-md-7 align-self-center">
+                </div>
             </div>
             <!-- End Bread crumb -->
             <!-- Container fluid  -->
@@ -52,133 +52,87 @@
 				<!-- /# column -->
                         <div class="card">
                             <div class="card-title">
-                                <h4>Pencarian </h4>
+                                <h4>No. Surat : ID-SURAT </h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered">
                                         <tbody>
                                             <tr>
-												<th scope="row">Nama Pengaju</th>
+												<th scope="row ">Nama Pengaju</th>
 												<th>
-													<div class="row col-md-10">
-														<div class="col-md-5">
-															<label class="control-label">[Name From System]</label>
+													<div class="row col-md-12">
+														<div class="col-md-12">
+															<label class="control-label" th:text="${pengajuan_surat.username_pengaju}">David Elkana Sitompul</label>
 														</div>
 													</div>	
 												</th>
                                             </tr>
                                             <tr>
-                                                <th scope="row">Jenis Surat</th>
-                                                <td>
-													<div class="row col-md-10">
-														<div class="col-md-5">
-															<select class="form-control" id="id_jenis" name="jenis_surat" onchange='show()'>
-																<option>1</option>
-																<option>2</option>
-																<option>3</option>
-																<option>4</option>
-																<option>5</option>
-															</select>
+												<th scope="row">Jenis Surat</th>
+												<th>
+													<div class="row col-md-12">
+														<div class="col-md-12">
+															<label class="control-label" th:text="${pengajuan_surat.id_jenis_surat}">Surat Izin Ikut Kegiatan</label>
 														</div>
 													</div>	
-												</td>
+												</th>
                                             </tr>
                                             <tr>
-                                                <th scope="row">Tanggal Pengajuan</th>
-												<td>
-													<div class="row col-md-10">
-														<div class="col-md-5">
-															<div class="form-group row">
-																<div class="col-md-9">
-																	<input type="date" class="form-control input-default " name="tanggal_mulai_izin" />
-																</div>
-																<label class="control-label text-right col-md-3">s/d</label>
-															</div>
+												<th scope="row">Tanggal Permohonan</th>
+												<th>
+													<div class="row col-md-12">
+														<div class="col-md-12">
+															<label class="control-label" th:text="${pengajuan_surat.tanggal_mohon}">2018-05-12</label>
 														</div>
-														<!--/span-->
-														<div class="col-md-5">
-															<div class="form-group row">
-																<div class="col-md-9">
-																	<input type="date" class="form-control input-default " name="tanggal_selesai_izin" />
-																</div>
-															</div>
-														</div>
-														<!--/span-->
-													</div>
-												</td>
+													</div>	
+												</th>
                                             </tr>
-											<tr>
-                                                <td colspan="2">
-                                                    <button type="submit" class="btn btn-info"> <i class="fa fa-search"></i> Cari</button>
-												</td>
+                                            <tr>
+												<th scope="row">Mata Kuliah Terkait</th>
+												<th>
+													<div class="row col-md-12">
+														<div class="col-md-12">
+															<label class="control-label" th:text="${pengajuan_surat.username_pengaju}">Basdat</label>
+														</div>
+													</div>	
+												</th>
+                                            </tr>
+                                            <tr>
+												<th scope="row">Tanggal Izin</th>
+												<th>
+													<div class="row col-md-12">
+														<div class="col-md-12">
+															<label class="control-label" th:text="${pengajuan_surat.tanggal_mulai_izin} + ' s.d ' + ${pengajuan_surat.tanggal_selesai_izin}">18-09-1202 s.d 14-01-2083</label>
+														</div>
+													</div>	
+												</th>
+                                            </tr>
+                                            <tr>
+												<th scope="row">Alasan Izin</th>
+												<th>
+													<div class="row col-md-12">
+														<div class="col-md-12">
+															<label class="control-label" th:text="${pengajuan_surat.alasan_izin}">Kuliah</label>
+														</div>
+													</div>	
+												</th>
+                                            </tr>
+                                            <tr>
+												<th scope="row">Keterangan</th>
+												<th>
+													<div class="row col-md-12">
+														<div class="col-md-12">
+															<label class="control-label" th:text="${pengajuan_surat.keterangan}">Keterangan</label>
+														</div>
+													</div>	
+												</th>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                        </div>
-                    <!-- /# column -->
-					<div class="card">
-						<div class="table-responsive m-t-40">
-							<table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
-								<thead>
-									<tr>
-										<th>Name</th>
-										<th>Position</th>
-										<th>Office</th>
-										<th>Age</th>
-										<th>Start date</th>
-										<th>Action</th>
-									</tr>
-								</thead>
-								<tfoot>
-									<tr>
-										<th>Name</th>
-										<th>Position</th>
-										<th>Office</th>
-										<th>Age</th>
-										<th>Start date</th>
-										<th>Detail</th>
-									</tr>
-								</tfoot>
-								<tbody>
-									<tr>
-										<td>Tiger Nixon</td>
-										<td>System Architect</td>
-										<td>Edinburgh</td>
-										<td>61</td>
-										<td>2011/04/25</td>
-										<td><button type="submit" class="btn btn-info"> <i class="fa fa-eye"></i> Detail</button></td>
-									</tr>
-									<tr>
-										<td>Garrett Winters</td>
-										<td>Accountant</td>
-										<td>Tokyo</td>
-										<td>63</td>
-										<td>2011/07/25</td>
-										<td><button type="submit" class="btn btn-info"> <i class="fa fa-eye"></i> Detail</button></td>
-									</tr>
-									<tr>
-										<td>Ashton Cox</td>
-										<td>Junior Technical Author</td>
-										<td>San Francisco</td>
-										<td>66</td>
-										<td>2009/01/12</td>
-										<td><button type="submit" class="btn btn-info"> <i class="fa fa-eye"></i> Detail</button></td>
-									</tr>
-									<tr>
-										<td>Cedric Kelly</td>
-										<td>Senior Javascript Developer</td>
-										<td>Edinburgh</td>
-										<td>22</td>
-										<td>2012/03/29</td>
-										<td><button type="submit" class="btn btn-info"> <i class="fa fa-eye"></i> Detail</button></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-                    </div>
+                        </div>	
                 <!-- End PAge Content -->
             </div>
             <!-- End Container fluid  -->

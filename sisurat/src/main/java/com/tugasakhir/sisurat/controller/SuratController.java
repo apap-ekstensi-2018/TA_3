@@ -28,57 +28,60 @@ import com.tugasakhir.sisurat.service.MahasiswaServiceRest;
 import com.tugasakhir.sisurat.service.SuratService;
 
 import lombok.extern.slf4j.Slf4j;
-
+@Slf4j
+@Controller
 public class SuratController {
 
-//	@Autowired
-//	SuratService suratDAO;
-//
-//	@RequestMapping("/pengajuan/tambah/submit")
-//	public String addSubmit(@ModelAttribute("pengajuan_surat") PengajuanSuratModel pengajuan_surat, Model model) {
-//		if (pengajuan_surat.getAlasan_izin().isEmpty()) {
-//			pengajuan_surat.setAlasan_izin("");
-//			pengajuan_surat.setTanggal_mulai_izin("0000-00-00");
-//			pengajuan_surat.setTanggal_selesai_izin("0000-00-00");
-//			pengajuan_surat.setId_matkul_terkait(0);
-//		}
-//		System.out.println("ID SURAT: "+pengajuan_surat.getId_jenis_surat());
-//		// set no surat
-//		int lastIdSurat = 0;
-//		try {
-//			lastIdSurat = suratDAO.getLastidSurat();
-//		} catch (Exception e) {
-//			e.printStackTrace();	
-//		}
-//		int no_surat = lastIdSurat+1;
-//		pengajuan_surat.setNo_surat("PS-" +no_surat);
-//
-//		// get current logged in username
-//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//		String name = auth.getName();
-//		log.info(auth.getName());
-//		
-//		// set username pengaju
-//		pengajuan_surat.setUsername_pengaju(name);
-//		pengajuan_surat.setUsername_pegawai(null);
-//
-//		// get current date
-//		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//		LocalDate localDate = LocalDate.now();
-//
-//		// set tanggal mohon from current date
-//		pengajuan_surat.setTanggal_mohon(dtf.format(localDate).toString());
-//
-//		suratDAO.insertPengajuan(pengajuan_surat);
-//		model.addAttribute("pengajuan_surat", pengajuan_surat);
-//		model.addAttribute("standardDate", new Date());
-//		return "success-add";
-//	}
-//	
-//	@RequestMapping("upload_foto")
-//	public String unggahSurat() {
-//		
-//		return "s";
-//	}
+	@Autowired
+	SuratService suratDAO;
+
+	@RequestMapping("/pengajuan/tambah/submit")
+	public String addSubmit(@ModelAttribute("pengajuan_surat") PengajuanSuratModel pengajuan_surat, Model model) {
+		if (pengajuan_surat.getAlasan_izin().isEmpty()) {
+			pengajuan_surat.setAlasan_izin("");
+			pengajuan_surat.setTanggal_mulai_izin("0000-00-00");
+			pengajuan_surat.setTanggal_selesai_izin("0000-00-00");
+			pengajuan_surat.setId_matkul_terkait(0);
+		}
+		System.out.println("ID SURAT: "+pengajuan_surat.getId_jenis_surat());
+		// set no surat
+		int lastIdSurat = 0;
+		try {
+			lastIdSurat = suratDAO.getLastidSurat();
+		} catch (Exception e) {
+			e.printStackTrace();	
+		}
+		int no_surat = lastIdSurat+1;
+		pengajuan_surat.setNo_surat("PS-" +no_surat);
+
+		// get current logged in username
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName();
+		log.info(auth.getName());
+		
+		// set username pengaju
+		pengajuan_surat.setUsername_pengaju(name);
+		pengajuan_surat.setUsername_pegawai(null);
+
+		// get current date
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate localDate = LocalDate.now();
+
+		// set tanggal mohon from current date
+		pengajuan_surat.setTanggal_mohon(dtf.format(localDate).toString());
+
+		suratDAO.insertPengajuan(pengajuan_surat);
+		model.addAttribute("pengajuan_surat", pengajuan_surat);
+		model.addAttribute("standardDate", new Date());
+		return "success-add";
+	}
+
 	
+	 @RequestMapping("/pengajuan/riwayat/{idSurat}")
+	 public String viewPath (Model model, @PathVariable(value = "idSurat") String idSurat){
+		 PengajuanSuratModel pengajuanSuratModel = suratDAO.selectPengajuan(Integer.parseInt(idSurat));
+		 
+		 model.addAttribute("pengajuan_surat", pengajuanSuratModel);
+		 return "pengajuan-riwayat-detail";	    
+	 }
 }
