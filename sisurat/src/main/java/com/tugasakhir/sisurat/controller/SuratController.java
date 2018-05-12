@@ -22,8 +22,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.tugasakhir.sisurat.model.JenisSuratModel;
 import com.tugasakhir.sisurat.model.PengajuanSuratModel;
 import com.tugasakhir.sisurat.model.SuratModel;
+import com.tugasakhir.sisurat.service.MahasiswaServiceRest;
 import com.tugasakhir.sisurat.service.SuratService;
 
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Controller
 public class SuratController {
 
@@ -60,9 +63,11 @@ public class SuratController {
 		// get current logged in username
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String name = auth.getName();
-
+		log.info(auth.getName());
+		
 		// set username pengaju
 		pengajuan_surat.setUsername_pengaju(name);
+		pengajuan_surat.setUsername_pegawai(null);
 
 		// get current date
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");

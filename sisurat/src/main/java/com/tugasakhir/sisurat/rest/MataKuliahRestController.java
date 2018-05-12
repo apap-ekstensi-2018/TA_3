@@ -11,12 +11,12 @@ import com.tugasakhir.sisurat.service.MahasiswaService;
 @RestController
 @RequestMapping("/rest")
 public class MataKuliahRestController {
- @Autowired
- MahasiswaService mahasiswaService;
- 
- @RequestMapping("pengajuan/riwayat/{npm}")
- public MahasiswaModel viewRiwayat(@PathVariable(value="npm") String npm) {
-	 MahasiswaModel mahasiswaModel = mahasiswaService.selectMahasiswa(npm);
-	 return mahasiswaModel;
- }
+// @Autowired
+// MahasiswaService mahasiswaService;
+// 
+// @RequestMapping("pengajuan/riwayat/{npm}")
+// public MahasiswaModel viewRiwayat(@PathVariable(value="npm") String npm) {
+//	 MahasiswaModel mahasiswaModel = mahasiswaService.selectMahasiswa(npm);
+//	 return mahasiswaModel;
+// }
 }

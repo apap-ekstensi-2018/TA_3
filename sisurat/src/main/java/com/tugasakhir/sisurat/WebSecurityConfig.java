@@ -13,6 +13,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
+import com.tugasakhir.sisurat.controller.SuratController;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
@@ -22,6 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		http
 		.authorizeRequests()
 		.antMatchers("/").permitAll()
+		.antMatchers("/mahasiswa/pengajuan").hasRole("mahasiswa")
 		.anyRequest().authenticated()
 		.and()
 		.formLogin()		
@@ -47,6 +53,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		auth.jdbcAuthentication().dataSource(dataSource)
 		.passwordEncoder(NoOpPasswordEncoder.getInstance())
 		.usersByUsernameQuery("SELECT U.username, U.password, '1' as enabled FROM user_account U WHERE U.username =?")
-		.authoritiesByUsernameQuery("select U.username, U.role from user_account U where U.username=?");
+		.authoritiesByUsernameQuery("select username, role from user_account where username=?");
 	}
 }

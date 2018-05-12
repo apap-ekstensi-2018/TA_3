@@ -13,7 +13,7 @@ public class PageController {
 	
 	@RequestMapping("/")
 	public String index() {
-		return "index";
+		return "form-login";
 	}
 
 	@RequestMapping("/home")
