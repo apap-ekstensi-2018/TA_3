@@ -24,6 +24,7 @@ import com.tugasakhir.sisurat.model.MahasiswaModel;
 import com.tugasakhir.sisurat.model.MataKuliahModel;
 import com.tugasakhir.sisurat.model.PegawaiModel;
 import com.tugasakhir.sisurat.model.PengajuanSuratModel;
+import com.tugasakhir.sisurat.model.StatusSuratModel;
 import com.tugasakhir.sisurat.model.SuratModel;
 import com.tugasakhir.sisurat.service.MahasiswaService;
 import com.tugasakhir.sisurat.service.MahasiswaServiceRest;
@@ -91,7 +92,7 @@ public class SuratController {
 	
 	
 	 @RequestMapping("/pengajuan/riwayat/{idSurat}")
-	 public String viewPath (Model model, @PathVariable(value = "idSurat") String idSurat){
+	 public String pengajuanRiwayatByIdSurat (Model model, @PathVariable(value = "idSurat") String idSurat){
 		 PengajuanSuratModel pengajuanSuratModel = suratDAO.selectPengajuan(Integer.parseInt(idSurat));
 		 MahasiswaModel mahasiswa = mahasiswaService.selectMahasiswa(pengajuanSuratModel.getUsername_pengaju());
 		 pengajuanSuratModel.setPengaju(mahasiswa);
@@ -105,5 +106,40 @@ public class SuratController {
 		 }
 		 model.addAttribute("pengajuan_surat", pengajuanSuratModel);
 		 return "pengajuan-riwayat-detail";	    
+	 }
+	 
+	 @RequestMapping("/pengajuan/view/{idSurat}")
+	 public String pengajuanView (Model model, @PathVariable(value = "idSurat") String idSurat){
+		 PengajuanSuratModel pengajuanSuratModel = suratDAO.selectPengajuan(Integer.parseInt(idSurat));
+		 MahasiswaModel mahasiswa = mahasiswaService.selectMahasiswa(pengajuanSuratModel.getUsername_pengaju());
+		 pengajuanSuratModel.setPengaju(mahasiswa);
+		 if(pengajuanSuratModel.getId_matkul_terkait()!=null) {
+			 MataKuliahModel mataKuliahModel = mkService.selectMataKuliah(pengajuanSuratModel.getId_matkul_terkait());
+			 pengajuanSuratModel.setMata_kuliah(mataKuliahModel);
+		 }
+		 if(pengajuanSuratModel.getUsername_pegawai()!=null) {
+			 PegawaiModel pegawai = pegawaiService.selectPegawai(pengajuanSuratModel.getUsername_pegawai());
+			 pengajuanSuratModel.setPegawai(pegawai);
+		 }
+		 
+		 List<StatusSuratModel> statusSuratModels = suratDAO.selectStatusSurat();
+		 model.addAttribute("pengajuan_surat", pengajuanSuratModel);
+		 model.addAttribute("status_surats", statusSuratModels);
+		 return "pengajuan-riwayat-detail-updateable";
+	 }
+	 @RequestMapping(value="/pengajuan/ubah/{idSurat}",method=RequestMethod.POST)
+	 public String pengajuanUbah (Model model, @PathVariable(value = "idSurat") String idSurat,
+			 @ModelAttribute("pengajuan_surat") PengajuanSuratModel pengajuan_surat){
+		 if(pengajuan_surat.getId()!=Integer.parseInt(idSurat)) {
+			 log.info(pengajuan_surat.toString());
+			 return "redirect:/pengajuan/view/"+idSurat;
+		 }
+		 log.info("Terima");
+		 
+		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		 String username = auth.getName();
+		 pengajuan_surat.setUsername_pegawai(username);
+		 suratDAO.updatePengajuan(pengajuan_surat);
+		 return "redirect:/pengajuan/view/"+idSurat;
 	 }
 }

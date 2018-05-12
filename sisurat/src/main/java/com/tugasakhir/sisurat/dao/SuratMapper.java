@@ -64,4 +64,7 @@ public interface SuratMapper
 
 	@Select("SELECT * FROM status_surat where id=#{id}")
 	StatusSuratModel selectStatusSuratById(int id);
+	
+	@Update("UPDATE pengajuan_surat SET id_status_surat=#{id_status_surat}, username_pegawai=#{username_pegawai} where id=#{id}")
+    void updatePengajuan (PengajuanSuratModel pengajuan_surat);
 }

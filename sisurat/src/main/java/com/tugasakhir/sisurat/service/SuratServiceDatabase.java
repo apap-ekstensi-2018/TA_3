@@ -77,4 +77,8 @@ public class SuratServiceDatabase implements SuratService
         return suratMapper.selectSurat(no_surat);
 		
 	}
+	@Override
+	public void updatePengajuan(PengajuanSuratModel pengajuan_surat) {
+		suratMapper.updatePengajuan(pengajuan_surat);
+	}
 }
