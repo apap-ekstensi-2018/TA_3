@@ -22,7 +22,7 @@ public class MataKuliahDAOImpl implements MataKuliahDAO{
 	@Override
 	public MataKuliahModel selectMatakuliahById(int id) {
 		MataKuliahModel matakuliah = 
-				restTemplate.getForObject("https://apap-fasilkom.herokuapp.com//api/matkul/view/id/"+id,
+				restTemplate.getForObject("https://apap-fasilkom.herokuapp.com/api/matkul/view/id/"+id,
 				MataKuliahModel.class);
 		return matakuliah;
 	}
@@ -30,7 +30,7 @@ public class MataKuliahDAOImpl implements MataKuliahDAO{
 	@Override
 	public MataKuliahModel selectMatakuliahByKode(String kode) {
 		MataKuliahModel matakuliah = 
-				restTemplate.getForObject("https://apap-fasilkom.herokuapp.com//api/matkul/view/kode/"+kode,
+				restTemplate.getForObject("https://apap-fasilkom.herokuapp.com/api/matkul/view/kode/"+kode,
 				MataKuliahModel.class);
 		return matakuliah;
 	}
