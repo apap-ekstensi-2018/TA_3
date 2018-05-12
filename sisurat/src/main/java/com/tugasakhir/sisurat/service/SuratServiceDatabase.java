@@ -40,16 +40,28 @@ public class SuratServiceDatabase implements SuratService
 	@Override
 	public void insertPengajuan (PengajuanSuratModel pengajuan_surat)
     {
-    	suratMapper.insertPengajuan(pengajuan_surat);
+		suratMapper.insertPengajuan(pengajuan_surat);
     }
 	
 	@Override
 	public int getLastidSurat() {
 		return suratMapper.getLastIdSurat();
 	}
+	
 	@Override
 	public List<PengajuanSuratModel> selectPengajuanSuratByMhs(String name) {
 		log.info("Tampilkan data status surat");
 		return suratMapper.selectPengajuanSuratByMhs(name);
+	}
+	
+	@Override
+	public PengajuanSuratModel selectPengajuan(int idSurat) {
+		return suratMapper.selectPengajuanSuratById(idSurat);
+	}
+	@Override
+	public SuratModel selectSurat(String no_surat) {
+		log.info ("select surat with no_surat {}", no_surat);
+        return suratMapper.selectSurat(no_surat);
+		
 	}
 }
