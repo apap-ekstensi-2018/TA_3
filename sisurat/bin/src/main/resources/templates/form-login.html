@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head>
     <meta charset="utf-8">
@@ -10,7 +12,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
-    <title>Ela - Bootstrap Admin Dashboard Template</title>
+    <title>Login</title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -43,14 +45,14 @@
 							<hr>
                             <div class="login-form">
                                 <h4>Login</h4>
-                                <form>
+                                <div th:if="${param.error}">Invalid username and password.</div>
+								<div th:if="${param.logout}">You have been logged out.</div>
+                                <form th:action="@{/login}" method="post">
                                     <div class="form-group">
-                                        <label>Username</label>
-                                        <input type="text" class="form-control" placeholder="Username">
+                                        <input type="text" class="form-control" placeholder="Username" name="username" required/>
                                     </div>
                                     <div class="form-group">
-                                        <label>Password</label>
-                                        <input type="password" class="form-control" placeholder="Password">
+                                        <input type="password" class="form-control" placeholder="Password" name="password" required/>
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Sign in</button>
                                 </form>

@@ -27,6 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		http
 		.authorizeRequests()
 		.antMatchers("/").permitAll()
+		.antMatchers("/api/**").permitAll()
 		.antMatchers("/mahasiswa/pengajuan").hasRole("MAHASISWA")
 		.anyRequest().authenticated()
 		.and()
