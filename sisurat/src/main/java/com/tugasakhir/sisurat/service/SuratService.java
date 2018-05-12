@@ -19,4 +19,5 @@ public interface SuratService
 	SuratModel selectSurat (String no_surat);
 	
 	int getLastidSurat();
+	PengajuanSuratModel selectPengajuan (int idSurat);
 }

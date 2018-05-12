@@ -48,6 +48,12 @@ public class SuratServiceDatabase implements SuratService
 		return suratMapper.getLastIdSurat();
 	}
 	@Override
+	public PengajuanSuratModel selectPengajuan(int idSurat) {
+		return suratMapper.selectPengajuanSuratById(idSurat);
+	}
+	
+	
+	@Override
 	public SuratModel selectSurat(String no_surat) {
 		log.info ("select surat with no_surat {}", no_surat);
         return suratMapper.selectSurat(no_surat);

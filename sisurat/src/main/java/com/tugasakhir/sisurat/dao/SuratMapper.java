@@ -53,4 +53,7 @@ void insertPengajuan (PengajuanSuratModel pengajuan_surat);
 	
 	@Select("SELECT id FROM pengajuan_surat ORDER BY id DESC LIMIT 1")
 	int getLastIdSurat();
+
+	@Select("SELECT * FROM pengajuan_surat where id=#{id}")
+	PengajuanSuratModel selectPengajuanSuratById(int id);
 }
