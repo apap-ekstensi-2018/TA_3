@@ -1,4 +1,4 @@
-## Web
+## Web Service
 
 ### List
 * [/api/surat/view/{no_surat}](#apicheckstatus)
