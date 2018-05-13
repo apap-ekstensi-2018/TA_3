@@ -12,9 +12,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.tugasakhir.sisurat.controller.PageController;
 import com.tugasakhir.sisurat.model.AsistenResponseModel;
 import com.tugasakhir.sisurat.model.MahasiswaModel;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class MahasiswaDAOImpl implements MahasiswaDAO{
 	@Autowired
@@ -43,12 +47,10 @@ public class MahasiswaDAOImpl implements MahasiswaDAO{
 	
 	@Override
 	public AsistenResponseModel checkIsAsistant(String id) {
-//		AsistenResponseModel assist = restTemplate.getForObject("https://siasisten-2.herokuapp.com/asisten-dosen/cek-status/id="+id,
-//				AsistenResponseModel.class);
-		// dummy:
-		AsistenResponseModel assist = new AsistenResponseModel();
-		assist.setBody(null);
-		assist.setStatus(200);;
+		AsistenResponseModel assist = restTemplate.getForObject("http://siasisten-2.herokuapp.com/asisten-dosen/cek-status?id="+id,
+				AsistenResponseModel.class);
+
+		log.info("USE rest "+ assist.toString());
 		
 		return assist;
 	}

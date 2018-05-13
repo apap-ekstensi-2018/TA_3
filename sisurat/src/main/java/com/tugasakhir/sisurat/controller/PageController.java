@@ -107,6 +107,7 @@ public class PageController {
 		mataKuliahList = mhs.getMataKuliahList();
 		AsistenResponseModel response = mahasiswaService.checkIsAsistant(String.valueOf(mhs.getId()));
 		isAsisten = response.getBody();
+		log.info("response " +response.toString());
 	}
 	
 	
@@ -127,7 +128,6 @@ public class PageController {
 	@RequestMapping(value="/pengajuan/tambah", method = RequestMethod.GET)
 	public String pengajuan_add(Model model) {
 		getMahasiswaList();
-		log.info("1");
 		model = PageController.validateJenisSurat(model, suratService);
 		return "form-pengajuan-tambah";
 	}
@@ -140,8 +140,10 @@ public class PageController {
 		// validate
 		boolean dummyIsAsistant = true;
 		if(null != isAsisten) {
+			log.info("get response from siasisten success");
 			dummyIsAsistant = isAsisten;
 		} else {
+			log.info("handle when failed response from siasisten");
 			try {
 				if(Integer.parseInt(username)% 2 == 1) {
 					dummyIsAsistant = false;
@@ -153,13 +155,10 @@ public class PageController {
 		
 		List<JenisSuratModel> jenis_surat = surat.selectJenisSurat();
 		List<JenisSuratModel> dummyJenisSurat = surat.selectJenisSurat();
-		if(null != isAsisten) {
-			log.info("USE DUMMY FOR ISASISTEN");
-			for(int index = 0; index < jenis_surat.size();index++) {
+		for(int index = 0; index < jenis_surat.size();index++) {
 				if(dummyIsAsistant == false && jenis_surat.get(index).getId() == 3) {
 				dummyJenisSurat.remove(dummyJenisSurat.get(index));	
 				}
-			}
 		}
 		
 		model.addAttribute("mata_kuliah", mataKuliahList);
