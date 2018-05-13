@@ -29,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/").permitAll()
 		.antMatchers("/api/**").permitAll()
 		.antMatchers("/mahasiswa/pengajuan").hasRole("MAHASISWA")
-		.antMatchers("/pengajuan/viewall").hasRole("DOSEN")
+		.antMatchers("/pengajuan/viewall").hasRole("STAF")
 		.anyRequest().authenticated()
 		.and()
 		.formLogin()		

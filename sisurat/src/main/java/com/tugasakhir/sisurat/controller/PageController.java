@@ -95,13 +95,6 @@ public class PageController {
 		
 		return "pengajuan-riwayat";
 	}
-
-	public void getMahasiswaList() {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String username = auth.getName();
-		mataKuliahList = mahasiswaService.selectMahasiswa(username).getMataKuliahList();
-	}
-	
 	
 	@RequestMapping("/pengajuan/viewall")
 	public String viewall(Model model) {
@@ -111,10 +104,26 @@ public class PageController {
 		log.info(auth.getName());
 		
 		List<PengajuanSuratModel> list_pengajuan_surat = suratService.selectAllPengajuanSurat();
+		for(int i=0;i<list_pengajuan_surat.size();i++) {
+			MahasiswaModel mahasiswa = mahasiswaService.selectMahasiswa(list_pengajuan_surat.get(i).getUsername_pengaju());
+			list_pengajuan_surat.get(i).setPengaju(mahasiswa);
+			if(list_pengajuan_surat.get(i).getUsername_pegawai()!=null) {
+				PegawaiModel pegawai = pegawaiService.selectPegawai(list_pengajuan_surat.get(i).getUsername_pegawai());
+				list_pengajuan_surat.get(i).setPegawai(pegawai);
+			}
+		}
 		PegawaiModel pegawai = pegawaiService.selectPegawai(username);
+		
 		model.addAttribute("list_pengajuan_surat", list_pengajuan_surat);
-		model.addAttribute("pegawai",pegawai);
-		return "pengajuan-viewall";
+		model.addAttribute("pegawai", pegawai);
+		
+		return "pengajuan-riwayat";
+	}
+
+	public void getMahasiswaList() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = auth.getName();
+		mataKuliahList = mahasiswaService.selectMahasiswa(username).getMataKuliahList();
 	}
 	
 	@RequestMapping(value="/pengajuan/tambah", method = RequestMethod.GET)
