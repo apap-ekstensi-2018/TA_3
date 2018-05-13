@@ -102,7 +102,7 @@
 									}	
 								}
 	                            </script>
-                            <form id = "formSearch" method="get" th:object="${pengajuan_surat}">
+                            <form name = "formSearch" method="get" th:object="${pengajuan_surat}">
 	                            <div class="card-body">
 	                                <div class="table-responsive">
 	                                    <table class="table table-bordered">
@@ -121,41 +121,41 @@
 	                                            <tr id="jenis">
 	                                                <th>
 														<div class="row col-md-10">
-															<select class="form-control" id="jenis_form" th:field="*{id_jenis_surat} name="id_jenis_surat">
+															<select class="form-control" id="jenis_form" th:field="*{id_jenis_surat}" name="id_jenis_surat">
 																<option disabled="disabled" selected="selected" value="0">--Pilih Jenis Surat--</option>
 															    <option th:each="jenis : ${jenis_surat}" th:value="${jenis.id}" th:text="${jenis.nama}"></option>
 														    </select>
 														    </div>
 													</th>
 	                                            </tr>
-	                                            <tr id="tanggal" style="display: none">
+	                                            <!-- <tr id="tanggal" style="display: none">
 													<th>
 													
 														<div class="row col-md-10">
 														<div class="form-group row">
 		                                                    <label class="control-label text-right col-md-3" for="tanggal_mulai_izin">Tanggal Izin</label>
 		                                                    <div class="col-md-9">
-		                                                        <input type="date" class="form-control input-default "  onchange='DateCheck()'  id="tanggal_mulai_izin_form" name="tanggal_awal_mohon" />
+		                                                        <input type="date" class="form-control input-default "  th:field="*{tanggal_mulai_izin}" onchange='DateCheck()'  id="tanggal_mulai_izin_form" name="tanggal_mulai_izin" />
 		                                                    </div>
-															<!--/span-->
+															/span
 															<div class="form-group row">
 			                                                    <label class="control-label text-center col-xs-2" for="tanggal_selesai_izin">s/d</label>
 			                                                    <div class="col-md-9">
-			                                                        <input type="date" class="form-control input-default " th:field="*{tanggal_awal_mohon} onchange='DateCheck()' id="tanggal_selesai_izin_form" name="tanggal_akhir_mohon"/>
+			                                                        <input type="date" class="form-control input-default " th:field="*{tanggal_selesai_izin}" onchange='DateCheck()' id="tanggal_selesai_izin_form" name="tanggal_selesai_izin"/>
 			                                                    </div>
 			                                                </div>
 														</div>
 														</div>
-	                                          		 <!--/span-->
+	                                          		 /span
 													</th>
-	                                            </tr>
+	                                            </tr> -->
 	                                            <tr id="status" style="display: none">
 	                                                <th>
 	                                                	<div class="row col-md-10">
 														<div class="form-group row">
 															<div class="col-md-9">
-																<select class="form-control" id="id_status_surat" th:field="*{id_status_surat} name="id_status_surat">
-																	<option disabled="disabled" selected="selected">--Status Surat--</option>
+																<select class="form-control" id="id_status_surat" th:field="*{id_status_surat}" name="id_status_surat">
+																	<option disabled="disabled" selected="selected" value="0">--Status Surat--</option>
 																    <option th:each="status : ${status_surat}" th:value="${status.id}" th:text="${status.nama}"></option>
 															    </select>
 															</div>
@@ -182,45 +182,31 @@
                             </form>
                         </div>
                         <script>
-	                        var form = document.getElementById('formSearch');
-	                        form.onsubmit = function() {
-	                            form.target = '_self';
-	                        };
-	
-	                        document.getElementById('btn2').onclick = function() {
-	                            form.target = '_blank';
-	                            form.submit();
-	                        }
+	                        
 	                        
 	                        function OnJenisViewButton(){
-	                        	document.formSearch.action="pengajuan/viewall/filterByJenis"
-	                        	document.formSearch="_self";
+	                        	document.formSearch.action="filterByJenis";
 	                        	document.formSearch.submit;
 	                        }
 	                        function OnTanggalViewButton(){
-	                        	document.formSearch.action="pengajuan/viewall/filterByDate"
-	                        	document.formSearch="_self";
+	                        	document.formSearch.action="filterByDate";
 	                        	document.formSearch.submit;
 	                        }
 	                        function OnStatusViewButton(){
-	                        	document.formSearch.action="pengajuan/viewall/filterByStatus"
-	                        	document.formSearch="_self";
+	                        	document.formSearch.action="filterByStatus";
 	                        	document.formSearch.submit;
 	                        }
 	                        
 	                        function OnJenisRiwayatButton(){
-	                        	document.formSearch.action="pengajuan/riwayat/filterByJenis"
-	                        	document.formSearch="_self";
+	                        	document.formSearch.action="riwayat/filterByJenis";
 	                        	document.formSearch.submit;
 	                        }
 	                        function OnTanggalRiwayatButton(){
-	                        	document.formSearch.action="pengajuan/riwayat/filterByDate"
-	                        	document.formSearch="_self";
+	                        	document.formSearch.action="riwayat/filterByDate";
 	                        	document.formSearch.submit;
 	                        }
 	                        function OnStatusRiwayatButton(){
-	                        	document.formSearch.action="pengajuan/riwayat/filterByStatus"
-	                        	document.formSearch="_self";
+	                        	document.formSearch.action="riwayat/filterByStatus";
 	                        	document.formSearch.submit;
 	                        }	                            
 
