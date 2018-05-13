@@ -97,6 +97,7 @@ public class SuratController {
 		log.info(auth.getName());
 		
 		List<PengajuanSuratModel> list_pengajuan_surat = suratDAO.selectPengajuanSuratByMhs(username);
+		log.info(list_pengajuan_surat.toString());
 		for(int i=0;i<list_pengajuan_surat.size();i++) {
 			MahasiswaModel mahasiswa = mahasiswaService.selectMahasiswa(list_pengajuan_surat.get(i).getUsername_pengaju());
 			list_pengajuan_surat.get(i).setPengaju(mahasiswa);
@@ -112,6 +113,7 @@ public class SuratController {
 	@RequestMapping("/pengajuan/viewall")
 	public String viewall(Model model) {
 		List<PengajuanSuratModel> list_pengajuan_surat = suratDAO.selectAllPengajuanSurat();
+		log.info(list_pengajuan_surat.toString());
 		for(int i=0;i<list_pengajuan_surat.size();i++) {
 			if(list_pengajuan_surat.get(i).getUsername_pegawai()!=null) {
 				PegawaiModel pegawai = pegawaiService.selectPegawai(list_pengajuan_surat.get(i).getUsername_pegawai());
