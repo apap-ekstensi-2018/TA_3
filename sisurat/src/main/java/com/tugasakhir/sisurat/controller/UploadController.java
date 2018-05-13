@@ -1,5 +1,7 @@
 package com.tugasakhir.sisurat.controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import com.tugasakhir.sisurat.model.PengajuanSuratModel;
@@ -44,24 +48,32 @@ public class UploadController {
 		return "upload-form";
 	}
  
-	@RequestMapping(value="/upload", method= RequestMethod.POST)
-	public String handleFileUpload(@RequestParam("file") MultipartFile file, Model model) {
+	@RequestMapping(value="/pengajuan/view/{idSurat}/upload", method= RequestMethod.POST)
+	public ModelAndView handleFileUpload(@PathVariable(value = "idSurat") int idSurat, @RequestParam("file") MultipartFile file, ModelMap model) {
+		PengajuanSuratModel pengajuanSuratModel = suratDAO.selectPengajuan(idSurat);
 		try {
-			storageService.store(file);
+			// get current date
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyyyy");
+			LocalDate localDate = LocalDate.now();
+			String nama_dokumen=pengajuanSuratModel.getId_jenis_surat()+dtf.format(localDate).toString()+pengajuanSuratModel.getId()+".pdf";
 			
-			model.addAttribute("message", "You successfully uploaded " + file.getOriginalFilename() + "!");
-			files.add(file.getOriginalFilename());
-			if(suratDAO.insertDokumenName(file.getOriginalFilename(), 6)) {
+			storageService.store(file, nama_dokumen);
+			
+			model.addAttribute("message", "You successfully uploaded file!");
+			files.add(nama_dokumen);
+			if(suratDAO.insertDokumenName(nama_dokumen, pengajuanSuratModel.getId())) {
 				System.out.println("BERHASIL");
 			}else {
 				System.out.println("GAGAL");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			model.addAttribute("message", "FAIL to upload " + file.getOriginalFilename() + "!");
+			model.addAttribute("message", "FAIL to upload !");
 		}
-		return "upload-form";
+		return new ModelAndView("redirect:/pengajuan/view/"+pengajuanSuratModel.getId(),model);
 	}
+	
+	
  
 	@GetMapping("/gellallfiles")
 	public String getListFiles(Model model) {

@@ -149,6 +149,13 @@ public class SuratController {
 		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		 String username = auth.getName();
 		 pengajuan_surat.setUsername_pegawai(username);
+		 if(pengajuan_surat.getId_status_surat()==4) {
+			// get current date
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyyyy");
+			LocalDate localDate = LocalDate.now();
+	
+			pengajuan_surat.setNo_surat(pengajuan_surat.getId_jenis_surat()+dtf.format(localDate).toString()+pengajuan_surat.getId());
+		 }
 		 suratDAO.updatePengajuan(pengajuan_surat);
 		 return "redirect:/pengajuan/view/"+idSurat;
 	 }
