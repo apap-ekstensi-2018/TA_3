@@ -1,5 +1,6 @@
 package com.tugasakhir.sisurat.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,48 @@ public class SuratServiceDatabase implements SuratService
 	}
 	
 	@Override
+	public List<PengajuanSuratModel> selectPengajuanSuratByMhs(String name) {
+		log.info("Tampilkan data status surat");
+		List<PengajuanSuratModel> pengajuanSuratModels = suratMapper.selectPengajuanSuratByMhs(name);
+		for(int i=0;i<pengajuanSuratModels.size();i++) {
+			JenisSuratModel jenisSuratModel = suratMapper.selectJenisSuratById(((ArrayList<PengajuanSuratModel>)pengajuanSuratModels).get(i).getId_jenis_surat());
+			pengajuanSuratModels.get(i).setJenis_surat(jenisSuratModel);
+			StatusSuratModel statusSuratModel = suratMapper.selectStatusSuratById(pengajuanSuratModels.get(i).getId_status_surat());
+			pengajuanSuratModels.get(i).setStatus_surat(statusSuratModel);
+		}
+		return pengajuanSuratModels;
+	}
+	
+	@Override
 	public PengajuanSuratModel selectPengajuan(int idSurat) {
-		return suratMapper.selectPengajuanSuratById(idSurat);
+		PengajuanSuratModel pengajuanSuratModel = suratMapper.selectPengajuanSuratById(idSurat);
+		JenisSuratModel jenisSuratModel = suratMapper.selectJenisSuratById(pengajuanSuratModel.getId_jenis_surat());
+		pengajuanSuratModel.setJenis_surat(jenisSuratModel);
+		StatusSuratModel statusSuratModel = suratMapper.selectStatusSuratById(pengajuanSuratModel.getId_status_surat());
+		pengajuanSuratModel.setStatus_surat(statusSuratModel);
+		return pengajuanSuratModel;
+	}
+	@Override
+	public SuratModel selectSurat(String no_surat) {
+		log.info ("select surat with no_surat {}", no_surat);
+        return suratMapper.selectSurat(no_surat);
+		
+	}
+	@Override
+	public void updatePengajuan(PengajuanSuratModel pengajuan_surat) {
+		suratMapper.updatePengajuan(pengajuan_surat);
+	}
+	@Override
+	public boolean insertDokumenName(String nama_dokumen, int id) {
+		return suratMapper.insertNamaDokumen(nama_dokumen, id);
+	}
+	@Override
+	public PengajuanSuratModel selectPengajuan(String noSurat) {
+		PengajuanSuratModel pengajuanSuratModel = suratMapper.selectPengajuanSuratByNoSurat(noSurat);
+		JenisSuratModel jenisSuratModel = suratMapper.selectJenisSuratById(pengajuanSuratModel.getId_jenis_surat());
+		pengajuanSuratModel.setJenis_surat(jenisSuratModel);
+		StatusSuratModel statusSuratModel = suratMapper.selectStatusSuratById(pengajuanSuratModel.getId_status_surat());
+		pengajuanSuratModel.setStatus_surat(statusSuratModel);
+		return pengajuanSuratModel;
 	}
 }

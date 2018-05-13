@@ -12,10 +12,15 @@ public interface SuratService
 {
 	List<JenisSuratModel> selectJenisSurat ();
 	List<StatusSuratModel> selectStatusSurat ();
-//	List<MatakuliahModel> selectAllMatakuliah();
+	List<PengajuanSuratModel> selectPengajuanSuratByMhs(String name);
 	List<PengajuanSuratModel> selectAllPengajuanSurat();
 	void insertPengajuan(PengajuanSuratModel pengajuan_surat);
+	void updatePengajuan(PengajuanSuratModel pengajuan_surat);
+	SuratModel selectSurat(String no_surat);
 	
 	int getLastidSurat();
 	PengajuanSuratModel selectPengajuan (int idSurat);
+	PengajuanSuratModel selectPengajuan (String noSurat);
+	
+	boolean insertDokumenName(String nama_dokumen, int id);
 }
