@@ -1,6 +1,7 @@
 package com.tugasakhir.sisurat.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,25 @@ public class SuratServiceDatabase implements SuratService
 		log.info("Tampilkan data pengajuan surat");
 		return suratMapper.selectAllPengajuanSurat();
 	}
+	
+	@Override
+	public List<PengajuanSuratModel> selectPengajuanSuratByJenisSurat(int id_jenis_surat) {
+		log.info("Tampilkan data pengajuan surat");
+		return suratMapper.selectPengajuanSuratByJenisSurat(id_jenis_surat);
+	}
+	
+	@Override
+	public List<PengajuanSuratModel> selectPengajuanSuratByTanggalSurat(Date tanggal_awal_mohon, Date tanggal_akhir_mohon) {
+		log.info("Tampilkan data pengajuan surat");
+		return suratMapper.selectPengajuanSuratByTanggalSurat(tanggal_akhir_mohon, tanggal_akhir_mohon);
+	}
+	
+	@Override
+	public List<PengajuanSuratModel> selectPengajuanSuratByStatusSurat(int id_status_surat) {
+		log.info("Tampilkan data pengajuan surat");
+		return suratMapper.selectPengajuanSuratByStatusSurat(id_status_surat);
+	}
+	
 	@Override
 	public void insertPengajuan (PengajuanSuratModel pengajuan_surat)
     {

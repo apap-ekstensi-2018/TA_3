@@ -1,5 +1,6 @@
 package com.tugasakhir.sisurat.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
@@ -39,7 +40,6 @@ public interface SuratMapper
 	@Select("SELECT * FROM status_surat")
 	List<StatusSuratModel> selectStatusSurat();
 	
-
 	@Insert("Insert INTO pengajuan_surat ("
 			+ "no_surat, username_pengaju, tanggal_mohon, id_jenis_surat, keterangan, alasan_izin, tanggal_mulai_izin, tanggal_selesai_izin, id_matkul_terkait)"
 			+ "values ("
@@ -67,4 +67,14 @@ public interface SuratMapper
 	
 	@Select("SELECT * FROM pengajuan_surat where no_surat=#{no_surat}")
 	PengajuanSuratModel selectPengajuanSuratByNoSurat(String noSurat);
+	
+	@Select("SELECT * FROM pengajuan_surat where id_jenis_surat=#{id_jenis_surat}")
+	List<PengajuanSuratModel> selectPengajuanSuratByJenisSurat(int id_jenis_surat);
+	
+	@Select("SELECT * FROM pengajuan_surat where id_status_surat=#{id_status_surat}")
+	List<PengajuanSuratModel> selectPengajuanSuratByStatusSurat(int id_status_surat);
+	
+	@Select("SELECT * FROM pengajuan_surat where tanggal_mohon between #{tanggal_awal_mohon} and #{tanggal_akhir_mohon}")
+	List<PengajuanSuratModel> selectPengajuanSuratByTanggalSurat(Date tanggal_awal_mohon, Date tanggal_akhir_mohon);
+	
 }
