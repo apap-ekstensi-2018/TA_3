@@ -21,6 +21,7 @@ public interface SuratService
 	
 	int getLastidSurat();
 	PengajuanSuratModel selectPengajuan (int idSurat);
+	PengajuanSuratModel selectPengajuan (String noSurat);
 	
 	boolean insertDokumenName(String nama_dokumen, int id);
 }

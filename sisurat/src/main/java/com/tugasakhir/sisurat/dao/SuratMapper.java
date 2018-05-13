@@ -70,4 +70,7 @@ public interface SuratMapper
 	
 	@Update("UPDATE pengajuan_surat SET id_status_surat=#{id_status_surat}, username_pegawai=#{username_pegawai} where id=#{id}")
     void updatePengajuan (PengajuanSuratModel pengajuan_surat);
+	
+	@Select("SELECT * FROM pengajuan_surat where no_surat=#{no_surat}")
+	PengajuanSuratModel selectPengajuanSuratByNoSurat(String noSurat);
 }
