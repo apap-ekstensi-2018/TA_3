@@ -74,7 +74,7 @@ public interface SuratMapper
 	@Select("SELECT * FROM pengajuan_surat where id_status_surat=#{id_status_surat}")
 	List<PengajuanSuratModel> selectPengajuanSuratByStatusSurat(int id_status_surat);
 	
-	@Select("SELECT * FROM pengajuan_surat where tanggal_mohon between #{tanggal_awal_mohon} and #{tanggal_akhir_mohon}")
-	List<PengajuanSuratModel> selectPengajuanSuratByTanggalSurat(Date tanggal_awal_mohon, Date tanggal_akhir_mohon);
+	@Select("SELECT * FROM pengajuan_surat where tanggal_mohon between #{tanggal_mulai_izin} and #{tanggal_selesai_izin}")
+	List<PengajuanSuratModel> selectPengajuanSuratByTanggalSurat(Date tanggal_mulai_izin, Date tanggal_selesai_izin);
 	
 }
