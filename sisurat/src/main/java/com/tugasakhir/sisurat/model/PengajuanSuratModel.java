@@ -39,4 +39,5 @@ public class PengajuanSuratModel {
 	private JenisSuratModel jenis_surat;
 	private MahasiswaModel pengaju;
 	private PegawaiModel pegawai;
+	private MataKuliahModel mata_kuliah;
 }

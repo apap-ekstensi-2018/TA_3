@@ -56,7 +56,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered">
+                                    <table class="table">
                                         <tbody>
                                             <tr>
 												<th scope="row ">Nama Pengaju</th>
@@ -130,16 +130,6 @@
 												</th>
                                             </tr> 
                                             <tr>
-												<th scope="row">Status Surat</th>
-												<th>
-													<div class="row col-md-12">
-														<div class="col-md-12">
-															<label class="control-label" th:text="${pengajuan_surat.status_surat.nama}"></label>
-														</div>
-													</div>	
-												</th>
-                                            </tr> 
-                                            <tr>
 												<th scope="row">Pemeriksa permonohan : </th>
 												<th>
 													<div class="row col-md-12">
@@ -147,6 +137,34 @@
 															<label class="control-label" th:text="${pengajuan_surat.pegawai==null}?'-':${pengajuan_surat.pegawai.nama}"></label>
 														</div>
 													</div>	
+												</th>
+                                            </tr> 
+                                            <tr>
+												<th scope="row ">Status Surat</th>
+												<th>
+													<form th:action="@{/pengajuan/ubah/}+${pengajuan_surat.id}" method="post" th:object="${pengajuan_surat}">
+													<input type="hidden" th:field="*{id}" name="id" />
+													<div class="row" >
+			                                            <div class="col-md-6">
+			                                                <div class="form-group row">
+			                                                    <div class="col-md-9">
+			                                                        <select class="form-control" required="required" id="id_jenis" th:field="*{id_status_surat}" name="jenis_surat"> 
+																		 		<option th:each="status : ${status_surats}" th:value="${status.id}" th:text="${status.nama}" ></option>
+																		 	</select>
+			                                                    </div>
+			                                                </div>
+			                                            </div>
+			                                            <!--/span-->
+			                                            <div class="col-md-6">
+			                                                <div class="form-group row">
+			                                                    <div class="col-md-9">
+			                                                        <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Ajukan</button>
+			                                                    </div>
+			                                                </div>
+			                                            </div>
+			                                            <!--/span-->
+			                                        </div>
+			                                        </form>
 												</th>
                                             </tr> 
                                         </tbody>

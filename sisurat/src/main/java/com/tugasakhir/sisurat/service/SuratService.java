@@ -15,8 +15,11 @@ public interface SuratService
 	List<PengajuanSuratModel> selectPengajuanSuratByMhs(String name);
 	List<PengajuanSuratModel> selectAllPengajuanSurat();
 	void insertPengajuan(PengajuanSuratModel pengajuan_surat);
+	void updatePengajuan(PengajuanSuratModel pengajuan_surat);
 	SuratModel selectSurat(String no_surat);
 	
 	int getLastidSurat();
 	PengajuanSuratModel selectPengajuan (int idSurat);
+	
+	boolean insertDokumenName(String nama_dokumen, int id);
 }

@@ -57,6 +57,9 @@ public interface SuratMapper
 	
 	@Select("SELECT * FROM pengajuan_surat where id=#{id}")
 	PengajuanSuratModel selectPengajuanSuratById(int id);
+	
+	@Update("UPDATE pengajuan_surat SET nama_dokumen=#{nama_dokumen} WHERE id=#{id}")
+    boolean insertNamaDokumen(@Param("nama_dokumen")String nama_dokumen, @Param("id")int id);
 
 	@Select("SELECT * FROM jenis_surat where id=#{id}")
 	JenisSuratModel selectJenisSuratById(int id);
@@ -64,4 +67,7 @@ public interface SuratMapper
 
 	@Select("SELECT * FROM status_surat where id=#{id}")
 	StatusSuratModel selectStatusSuratById(int id);
+	
+	@Update("UPDATE pengajuan_surat SET id_status_surat=#{id_status_surat}, username_pegawai=#{username_pegawai} where id=#{id}")
+    void updatePengajuan (PengajuanSuratModel pengajuan_surat);
 }

@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -54,12 +55,18 @@ public class PageController {
 	
 	@RequestMapping("/login")
 	public String login() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+	    if (!(auth instanceof AnonymousAuthenticationToken))
+	    {
+	        return "redirect:/home";
+	    }
 		return "form-login";
 	}
 	
 	@RequestMapping("/")
 	public String index() {
-		return "form-login";
+		return "redirect:/home";
 	}
 
 	@RequestMapping("/home")
