@@ -139,6 +139,18 @@
 													</div>	
 												</th>
                                             </tr> 
+                                             <tr>
+												<th scope="row">File Surat</th>
+												<th>
+													<div class="row col-md-12">
+														<div class="col-md-12">
+															<div th:switch="${pengajuan_surat.id_status_surat}">
+																<a  th:case="4" th:href="@{'/pengajuan/riwayat/download/'+${pengajuan_surat.no_surat}}"><button type="submit" class="btn btn-info"> <i class="fa fa-eye"></i> Download File</button></a>
+															</div>
+														</div>
+													</div>	
+												</th>
+                                            </tr> 
                                             <tr>
 												<th scope="row">Pemeriksa permonohan : </th>
 												<th>
