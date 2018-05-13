@@ -66,15 +66,6 @@ public class SuratController {
 			pengajuan_surat.setTanggal_selesai_izin(null);
 			pengajuan_surat.setId_matkul_terkait(null);
 		}
-//		System.out.println("ID SURAT: "+pengajuan_surat.getId_jenis_surat());
-		// set no surat
-//		int lastIdSurat = 0;
-//		try {
-//			lastIdSurat = suratDAO.getLastidSurat();
-//		} catch (Exception e) {
-//			e.printStackTrace();	
-//		}
-//		int no_surat = lastIdSurat+1;
 		pengajuan_surat.setNo_surat(null);
 
 		// get current logged in username
@@ -90,7 +81,6 @@ public class SuratController {
 
 		// set tanggal mohon from current date
 		pengajuan_surat.setTanggal_mohon(dtf.format(localDate).toString());
-		log.info(pengajuan_surat.toString());
 
 		suratDAO.insertPengajuan(pengajuan_surat);
 		
