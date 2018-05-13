@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import com.tugasakhir.sisurat.dao.MahasiswaDAO;
+import com.tugasakhir.sisurat.model.AsistenResponseModel;
 import com.tugasakhir.sisurat.model.MahasiswaModel;
 
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +30,12 @@ public class MahasiswaServiceRest implements MahasiswaService {
 	public List<MahasiswaModel> selectAllMahasiswa() {
 		log.info("REST - select all mahasiswa");
 		return mahasiswaDAO.selectAllMahasiswa();
+	}
+	
+	@Override
+	public AsistenResponseModel checkIsAsistant(String id) {
+		log.info("REST - select asisten "+id);
+		return mahasiswaDAO.checkIsAsistant(id);
 	}
 
 }

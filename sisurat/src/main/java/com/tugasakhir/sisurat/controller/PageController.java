@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.tugasakhir.sisurat.model.AsistenResponseModel;
 import com.tugasakhir.sisurat.model.JenisSuratModel;
 import com.tugasakhir.sisurat.model.MataKuliahModel;
 import com.tugasakhir.sisurat.model.PengajuanSuratModel;
@@ -49,6 +50,7 @@ public class PageController {
 	 MahasiswaService mahasiswaService;
 	
 	static List<MataKuliahModel> mataKuliahList;
+	static Boolean isAsisten;
 	
 	@Autowired
 	PegawaiService pegawaiService;
@@ -101,7 +103,10 @@ public class PageController {
 	public void getMahasiswaList() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String username = auth.getName();
-		mataKuliahList = mahasiswaService.selectMahasiswa(username).getMataKuliahList();
+		MahasiswaModel mhs = mahasiswaService.selectMahasiswa(username);
+		mataKuliahList = mhs.getMataKuliahList();
+		AsistenResponseModel response = mahasiswaService.checkIsAsistant(String.valueOf(mhs.getId()));
+		isAsisten = response.getBody();
 	}
 	
 	
@@ -134,19 +139,26 @@ public class PageController {
 		
 		// validate
 		boolean dummyIsAsistant = true;
-		try {
-		if(Integer.parseInt(username)% 2 == 1) {
+		if(null != isAsisten) {
+			dummyIsAsistant = isAsisten;
+		} else {
+			try {
+				if(Integer.parseInt(username)% 2 == 1) {
+					dummyIsAsistant = false;
+				}
+			} catch(Exception e) {
 			dummyIsAsistant = false;
-		}
-		}catch(Exception e) {
-			dummyIsAsistant = false;
+			}
 		}
 		
 		List<JenisSuratModel> jenis_surat = surat.selectJenisSurat();
 		List<JenisSuratModel> dummyJenisSurat = surat.selectJenisSurat();
-		for(int index = 0; index < jenis_surat.size();index++) {
-			if(dummyIsAsistant == false && jenis_surat.get(index).getId() == 3) {
-				dummyJenisSurat.remove(dummyJenisSurat.get(index));
+		if(null != isAsisten) {
+			log.info("USE DUMMY FOR ISASISTEN");
+			for(int index = 0; index < jenis_surat.size();index++) {
+				if(dummyIsAsistant == false && jenis_surat.get(index).getId() == 3) {
+				dummyJenisSurat.remove(dummyJenisSurat.get(index));	
+				}
 			}
 		}
 		
