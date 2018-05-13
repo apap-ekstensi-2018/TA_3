@@ -52,7 +52,7 @@
 				<!-- /# column -->
                         <div class="card">
                             <div class="card-title">
-                                <h4>No. Surat : ID-SURAT </h4>
+                                <h4 th:text="${pengajuan_surat.no_surat==null} ? 'No. Surat : -' : ('No. Sura : '+${pengajuan_surat.no_surat})">No. Surat : ID-SURAT </h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -63,17 +63,17 @@
 												<th>
 													<div class="row col-md-12">
 														<div class="col-md-12">
-															<label class="control-label" th:text="${pengajuan_surat.username_pengaju}">David Elkana Sitompul</label>
+															<label class="control-label" th:text="${pengajuan_surat.pengaju.nama}">David Elkana Sitompul</label>
 														</div>
 													</div>	
 												</th>
                                             </tr>
-                                            <tr>
+                                            <tr >
 												<th scope="row">Jenis Surat</th>
 												<th>
 													<div class="row col-md-12">
 														<div class="col-md-12">
-															<label class="control-label" th:text="${pengajuan_surat.id_jenis_surat}">Surat Izin Ikut Kegiatan</label>
+															<label class="control-label" th:text="${pengajuan_surat.jenis_surat.nama}">Surat Izin Ikut Kegiatan</label>
 														</div>
 													</div>	
 												</th>
@@ -88,27 +88,28 @@
 													</div>	
 												</th>
                                             </tr>
-                                            <tr>
-												<th scope="row">Mata Kuliah Terkait</th>
+                                            
+                                            <tr th:style="${pengajuan_surat.id_jenis_surat!=1 && pengajuan_surat.id_jenis_surat!=2} ? 'display: none;' : ${pengajuan_surat.id_jenis_surat}">
+                                           		<th scope="row">Mata Kuliah Terkait</th>
 												<th>
 													<div class="row col-md-12">
 														<div class="col-md-12">
-															<label class="control-label" th:text="${pengajuan_surat.username_pengaju}">Basdat</label>
+															<label class="control-label" th:text="${pengajuan_surat.mata_kuliah==null}?'-':${pengajuan_surat.mata_kuliah.nama_matkul}">Basdat</label>
 														</div>
 													</div>	
 												</th>
                                             </tr>
-                                            <tr>
+                                            <tr th:style="${pengajuan_surat.id_jenis_surat!=1 && pengajuan_surat.id_jenis_surat!=2} ? 'display: none;' : ${pengajuan_surat.id_jenis_surat}">
 												<th scope="row">Tanggal Izin</th>
 												<th>
 													<div class="row col-md-12">
 														<div class="col-md-12">
-															<label class="control-label" th:text="${pengajuan_surat.tanggal_mulai_izin} + ' s.d ' + ${pengajuan_surat.tanggal_selesai_izin}">18-09-1202 s.d 14-01-2083</label>
+															<label class="control-label" th:text="${pengajuan_surat.tanggal_mulai_izin} + ' sampai ' + ${pengajuan_surat.tanggal_selesai_izin}">18-09-1202 s.d 14-01-2083</label>
 														</div>
 													</div>	
 												</th>
                                             </tr>
-                                            <tr>
+                                            <tr th:style="${pengajuan_surat.id_jenis_surat!=1 && pengajuan_surat.id_jenis_surat!=2} ? 'display: none;' : ${pengajuan_surat.id_jenis_surat}">
 												<th scope="row">Alasan Izin</th>
 												<th>
 													<div class="row col-md-12">
@@ -127,7 +128,27 @@
 														</div>
 													</div>	
 												</th>
-                                            </tr>
+                                            </tr> 
+                                            <tr>
+												<th scope="row">Status Surat</th>
+												<th>
+													<div class="row col-md-12">
+														<div class="col-md-12">
+															<label class="control-label" th:text="${pengajuan_surat.status_surat.nama}"></label>
+														</div>
+													</div>	
+												</th>
+                                            </tr> 
+                                            <tr>
+												<th scope="row">Pemeriksa permonohan : </th>
+												<th>
+													<div class="row col-md-12">
+														<div class="col-md-12">
+															<label class="control-label" th:text="${pengajuan_surat.pegawai==null}?'-':${pengajuan_surat.pegawai.nama}"></label>
+														</div>
+													</div>	
+												</th>
+                                            </tr> 
                                         </tbody>
                                     </table>
                                 </div>

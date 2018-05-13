@@ -13,7 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
-import com.tugasakhir.sisurat.controller.SuratController;
+//import com.tugasakhir.sisurat.controller.SuratController;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,9 +27,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		http
 		.authorizeRequests()
 		.antMatchers("/").permitAll()
+		.antMatchers("/api/**").permitAll()
 		.antMatchers("/files/*").permitAll()
 		.antMatchers("/mahasiswa/pengajuan").hasRole("MAHASISWA")
-//		.anyRequest().authenticated()
+		.antMatchers("/pengajuan/viewall").hasRole("DOSEN")
+		.anyRequest().authenticated()
 		.and()
 		.formLogin()		
 		.loginPage("/login").permitAll()

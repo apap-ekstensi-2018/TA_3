@@ -55,7 +55,11 @@ xmlns:th="http://www.thymeleaf.org">
 				        document.getElementById('tanggal').style.display = 'block';
 				        document.getElementById('matkul_terkait').style.display = 'block';
 				    } else {
-				    	document.getElementById('alasan_izin').style.display = 'none';
+				    		$('#alasan_izin_form').removeAttr('required');
+				    		 $('#tanggal_mulai_izin_form').removeAttr('required')
+				    		 $('#tanggal_selesai_izin_form').removeAttr('required')
+				    		 $('#id_matkul_terkait_form').removeAttr('required')
+				        document.getElementById('alasan_izin').style.display = 'none';
 				        document.getElementById('tanggal').style.display = 'none';
 				        document.getElementById('matkul_terkait').style.display = 'none';
 				    }
@@ -71,7 +75,7 @@ xmlns:th="http://www.thymeleaf.org">
                             </div>
                             <div class="card-body">
                                 <div class="basic-form">
-                                    <form th:action="@{/pengajuan/tambah/submit}" method="post" th:object="${pengajuan_surat}">
+                                    <form th:action="@{/pengajuan/tambah}" method="post" th:object="${pengajuan_surat}">
 										<div class="row">
                                             <div class="col-md9-6">
                                             	    <div class="form-group row">
@@ -100,7 +104,7 @@ xmlns:th="http://www.thymeleaf.org">
                                                 <div class="form-group row">
                                                     <label class="control-label text-right col-md-3" for="alasan_izin">Alasan Izin</label>
                                                     <div class="col-md-9">
-                                                        <textarea class="form-control input-default" name="alasan_izin" th:field="*{alasan_izin}" required></textarea>
+                                                        <textarea class="form-control input-default" id="alasan_izin_form" name="alasan_izin" th:field="*{alasan_izin}" required></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -111,7 +115,7 @@ xmlns:th="http://www.thymeleaf.org">
 	                                                <div class="form-group row">
 	                                                    <label class="control-label text-right col-md-3" for="tanggal_mulai_izin">Tanggal Izin</label>
 	                                                    <div class="col-md-9">
-	                                                        <input type="date" class="form-control input-default " name="tanggal_mulai_izin" th:field="*{tanggal_mulai_izin}" required/>
+	                                                        <input type="date" class="form-control input-default " id="tanggal_mulai_izin_form" name="tanggal_mulai_izin" th:field="*{tanggal_mulai_izin}" required/>
 	                                                    </div>
 	                                                </div>
 	                                            </div>
@@ -120,7 +124,7 @@ xmlns:th="http://www.thymeleaf.org">
 	                                                <div class="form-group row">
 	                                                    <label class="control-label text-center col-xs-2" for="tanggal_selesai_izin">s/d</label>
 	                                                    <div class="col-md-9">
-	                                                        <input type="date" class="form-control input-default " name="tanggal_selesai_izin" th:field="*{tanggal_selesai_izin}" required/>
+	                                                        <input type="date" class="form-control input-default " id="tanggal_selesai_izin_form" name="tanggal_selesai_izin" th:field="*{tanggal_selesai_izin}" required/>
 	                                                    </div>
 	                                                </div>
 	                                            </div>
@@ -131,16 +135,14 @@ xmlns:th="http://www.thymeleaf.org">
                                             <div class="col-md-6">
                                                 <div class="form-group row">
                                                     <label class="control-label text-right col-md-3" for="id_matkul_terkait">Matakuliah Terkait</label>
-                                                    <div class="col-md-9">
-                                                        <select class="form-control" id="id_matkul_terkait" name="matkul" onchange='show()' 
-                                                        th:field="*{id_matkul_terkait}">
-															<option th:value="1">1</option>
-															<option th:value="2">2</option>
-															<option th:value="3">3</option>
-															<option th:value="4">4</option>
-															<option th:value="5">5</option>
-														</select>
-                                                    </div>
+                                            
+                                                     <div class="col-md-9">
+														<select class="form-control" required="required" id="id_matkul_terkait_form" th:field="*{id_matkul_terkait}" name="mata_kuliah" onchange='show()'>
+															<option disabled="disabled" selected="selected" th:value="0">--Pilih Mata Kuliah--</option>
+														    <option th:each="matkul : ${mata_kuliah}" th:value="${matkul.id}" th:text="${matkul.nama_matkul}" ></option>
+													    </select>
+                                                    </div>  
+                                                    
                                                 </div>
                                             </div>
                                         </div>
