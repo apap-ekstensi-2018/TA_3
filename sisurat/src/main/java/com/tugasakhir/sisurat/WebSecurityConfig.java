@@ -26,16 +26,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 		.authorizeRequests()
-		.antMatchers("/").permitAll()
 		.antMatchers("/api/**").permitAll()
 		.antMatchers("/files/*").permitAll()
-		.antMatchers("/mahasiswa/pengajuan").hasRole("MAHASISWA")
-		.antMatchers("/pengajuan/viewall").hasRole("DOSEN")
+		.antMatchers("/pengajuan/tambah","/pengajuan/riwayat","/pengajuan/riwayat/**").hasRole("MAHASISWA")
+		.antMatchers("/pengajuan/viewall","/pengajuan/view/**").hasAnyRole("DOSEN","STAF")
 		.anyRequest().authenticated()
 		.and()
 		.formLogin()		
 		.loginPage("/login").permitAll()
-		.defaultSuccessUrl("/home", true)
+		.defaultSuccessUrl("/home",true)
 		.and()
 		.logout().permitAll();
 		http.exceptionHandling().accessDeniedPage("/403");
