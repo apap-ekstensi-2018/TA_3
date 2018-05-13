@@ -102,7 +102,7 @@
 									}	
 								}
 	                            </script>
-                            <form id = "formSearch" method="get" th:object="{pengajuan_surat}">
+                            <form id = "formSearch" method="get" th:object="${pengajuan_surat}">
 	                            <div class="card-body">
 	                                <div class="table-responsive">
 	                                    <table class="table table-bordered">
@@ -122,7 +122,7 @@
 	                                                <th>
 														<div class="row col-md-10">
 															<select class="form-control" id="jenis_form" th:field="*{id_jenis_surat} name="id_jenis_surat">
-																<option disabled="disabled" selected="selected">--Pilih Jenis Surat--</option>
+																<option disabled="disabled" selected="selected" value="0">--Pilih Jenis Surat--</option>
 															    <option th:each="jenis : ${jenis_surat}" th:value="${jenis.id}" th:text="${jenis.nama}"></option>
 														    </select>
 														    </div>
@@ -151,11 +151,10 @@
 	                                            </tr>
 	                                            <tr id="status" style="display: none">
 	                                                <th>
-	                                                
-														<div class="row col-md-10">
+	                                                	<div class="row col-md-10">
 														<div class="form-group row">
 															<div class="col-md-9">
-																<select class="form-control" id="id_status_surat" th:field="*{id_status_surat} name="jenis_surat">
+																<select class="form-control" id="id_status_surat" th:field="*{id_status_surat} name="id_status_surat">
 																	<option disabled="disabled" selected="selected">--Status Surat--</option>
 																    <option th:each="status : ${status_surat}" th:value="${status.id}" th:text="${status.nama}"></option>
 															    </select>
