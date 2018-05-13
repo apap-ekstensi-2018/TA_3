@@ -20,10 +20,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.tugasakhir.sisurat.model.JenisSuratModel;
 import com.tugasakhir.sisurat.model.MataKuliahModel;
 import com.tugasakhir.sisurat.model.PengajuanSuratModel;
-import com.tugasakhir.sisurat.rest.MataKuliahRestController;
 import com.tugasakhir.sisurat.service.MahasiswaService;
 import com.tugasakhir.sisurat.service.MahasiswaServiceRest;
-import com.tugasakhir.sisurat.service.MataKuliahService;
 import com.tugasakhir.sisurat.service.SuratService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -45,9 +43,6 @@ public class PageController {
 	
 	@Autowired
 	SuratService suratService;
-	
-	@Autowired
-	 MataKuliahService mkService;
 	
 	@Autowired
 	 MahasiswaService mahasiswaService;
@@ -120,6 +115,7 @@ public class PageController {
 	@RequestMapping(value="/pengajuan/tambah", method = RequestMethod.GET)
 	public String pengajuan_add(Model model) {
 		getMahasiswaList();
+		log.info("1");
 		model = PageController.validateJenisSurat(model, suratService);
 		return "form-pengajuan-tambah";
 	}
