@@ -91,6 +91,79 @@ public class SuratController {
 		return "form-pengajuan-tambah";
 	}
 
+	@RequestMapping(value="/pengajuan/riwayat", method=RequestMethod.GET)
+	public String riwayat(@ModelAttribute("pengajuan_surat") PengajuanSuratModel pengajuan_surat, Model model) {
+		// get current user logged
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = auth.getName();
+		log.info(auth.getName());
+		
+		List<JenisSuratModel> jenis_surat = suratDAO.selectJenisSurat();
+		List<StatusSuratModel> status_surat = suratDAO.selectStatusSurat();
+		List<PengajuanSuratModel> list_pengajuan_surat = suratDAO.selectPengajuanSuratByMhs(username);
+		log.info(list_pengajuan_surat.toString());
+		for(int i=0;i<list_pengajuan_surat.size();i++) {
+			MahasiswaModel mahasiswa = mahasiswaService.selectMahasiswa(list_pengajuan_surat.get(i).getUsername_pengaju());
+			list_pengajuan_surat.get(i).setPengaju(mahasiswa);
+			if(list_pengajuan_surat.get(i).getUsername_pegawai()!=null) {
+				PegawaiModel pegawai = pegawaiService.selectPegawai(list_pengajuan_surat.get(i).getUsername_pegawai());
+				list_pengajuan_surat.get(i).setPegawai(pegawai);
+			}
+		}
+		model.addAttribute("jenis_surat", jenis_surat);
+		model.addAttribute("status_surat", status_surat);
+		model.addAttribute("list_pengajuan_surat", list_pengajuan_surat);
+		return "pengajuan-riwayat";
+	}
+	
+	@RequestMapping (value="pengajuan/viewall/filterByJenis", method=RequestMethod.GET)
+	public String filterByJenis (Model model, 
+			@RequestParam(value="jenis_surat", required=false) Integer id_jenis_surat, 
+			@RequestParam(value="tanggal_mulai_izin", required=false) Date tanggal_awal_mohon,
+			@RequestParam(value="tanggal_selesai_izin", required=false) Date tanggal_akhir_mohon,
+			@RequestParam(value="status", required=false) Integer id_status_surat)
+	{
+		List<PengajuanSuratModel> list_pengajuan_surat = null;
+		if (id_jenis_surat != null) {
+			list_pengajuan_surat = suratDAO.selectPengajuanSuratByJenisSurat(id_jenis_surat);
+		}else if (tanggal_awal_mohon != null && tanggal_akhir_mohon != null)  {
+			list_pengajuan_surat = suratDAO.selectPengajuanSuratByTanggalSurat(tanggal_awal_mohon,tanggal_akhir_mohon);
+		}else if (id_status_surat != null) {
+			list_pengajuan_surat = suratDAO.selectPengajuanSuratByStatusSurat(id_status_surat);
+		}
+		else {
+			list_pengajuan_surat = null;
+			log.info("Not handle yet");
+		};		
+		List<JenisSuratModel> jenis_surat = suratDAO.selectJenisSurat();
+		List<StatusSuratModel> status_surat = suratDAO.selectStatusSurat();
+		model.addAttribute("jenis_surat", jenis_surat);
+		model.addAttribute("status_surat", status_surat);
+		model.addAttribute("list_pengajuan_surat", list_pengajuan_surat);
+		return "pengajuan-riwayat";
+	}
+	
+	@RequestMapping("/pengajuan/viewall")
+	public String viewall(Model model) {
+		List<JenisSuratModel> jenis_surat = suratDAO.selectJenisSurat();
+		List<StatusSuratModel> status_surat = suratDAO.selectStatusSurat();
+		List<PengajuanSuratModel> list_pengajuan_surat = suratDAO.selectAllPengajuanSurat();
+		log.info(list_pengajuan_surat.toString());
+		for(int i=0;i<list_pengajuan_surat.size();i++) {
+			MahasiswaModel mahasiswa = mahasiswaService.selectMahasiswa(list_pengajuan_surat.get(i).getUsername_pengaju());
+			list_pengajuan_surat.get(i).setPengaju(mahasiswa);
+			if(list_pengajuan_surat.get(i).getUsername_pegawai()!=null) {
+				PegawaiModel pegawai = pegawaiService.selectPegawai(list_pengajuan_surat.get(i).getUsername_pegawai());
+				list_pengajuan_surat.get(i).setPegawai(pegawai);
+			}
+			
+		}
+		model.addAttribute("jenis_surat", jenis_surat);
+		model.addAttribute("status_surat", status_surat);
+		model.addAttribute("list_pengajuan_surat", list_pengajuan_surat);
+		return "pengajuan-riwayat";
+	}
+
 	
 	 @RequestMapping("/pengajuan/riwayat/{idSurat}")
 	 public String pengajuanRiwayatByIdSurat (Model model, @PathVariable(value = "idSurat") String idSurat){

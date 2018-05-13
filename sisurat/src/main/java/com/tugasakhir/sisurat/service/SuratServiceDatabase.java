@@ -1,6 +1,7 @@
 package com.tugasakhir.sisurat.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +37,34 @@ public class SuratServiceDatabase implements SuratService
 	@Override
 	public List<PengajuanSuratModel> selectAllPengajuanSurat() {
 		log.info("Tampilkan data pengajuan surat");
-		return suratMapper.selectAllPengajuanSurat();
+		List<PengajuanSuratModel> pengajuanSuratModels = suratMapper.selectAllPengajuanSurat();
+		for(int i=0;i<pengajuanSuratModels.size();i++) {
+			JenisSuratModel jenisSuratModel = suratMapper.selectJenisSuratById(((ArrayList<PengajuanSuratModel>)pengajuanSuratModels).get(i).getId_jenis_surat());
+			pengajuanSuratModels.get(i).setJenis_surat(jenisSuratModel);
+			StatusSuratModel statusSuratModel = suratMapper.selectStatusSuratById(pengajuanSuratModels.get(i).getId_status_surat());
+			pengajuanSuratModels.get(i).setStatus_surat(statusSuratModel);
+		}
+		return pengajuanSuratModels;
 	}
+	
+	@Override
+	public List<PengajuanSuratModel> selectPengajuanSuratByJenisSurat(int id_jenis_surat) {
+		log.info("Tampilkan data pengajuan surat");
+		return suratMapper.selectPengajuanSuratByJenisSurat(id_jenis_surat);
+	}
+	
+	@Override
+	public List<PengajuanSuratModel> selectPengajuanSuratByTanggalSurat(Date tanggal_awal_mohon, Date tanggal_akhir_mohon) {
+		log.info("Tampilkan data pengajuan surat");
+		return suratMapper.selectPengajuanSuratByTanggalSurat(tanggal_akhir_mohon, tanggal_akhir_mohon);
+	}
+	
+	@Override
+	public List<PengajuanSuratModel> selectPengajuanSuratByStatusSurat(int id_status_surat) {
+		log.info("Tampilkan data pengajuan surat");
+		return suratMapper.selectPengajuanSuratByStatusSurat(id_status_surat);
+	}
+	
 	@Override
 	public void insertPengajuan (PengajuanSuratModel pengajuan_surat)
     {

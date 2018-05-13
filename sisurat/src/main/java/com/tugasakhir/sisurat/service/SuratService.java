@@ -1,5 +1,6 @@
 package com.tugasakhir.sisurat.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.tugasakhir.sisurat.model.JenisSuratModel;
@@ -23,4 +24,7 @@ public interface SuratService
 	PengajuanSuratModel selectPengajuan (String noSurat);
 	
 	boolean insertDokumenName(String nama_dokumen, int id);
+	List<PengajuanSuratModel> selectPengajuanSuratByJenisSurat(int id_jenis_surat);
+	List<PengajuanSuratModel> selectPengajuanSuratByTanggalSurat(Date tanggal_awal_mohon, Date tanggal_akhir_mohon);
+	List<PengajuanSuratModel> selectPengajuanSuratByStatusSurat(int id_status_surat);
 }
