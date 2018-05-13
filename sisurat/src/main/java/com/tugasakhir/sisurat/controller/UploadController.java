@@ -43,10 +43,6 @@ public class UploadController {
 	
 	List<String> files = new ArrayList<String>();
  
-	@RequestMapping(value="/upload", method= RequestMethod.GET)
-	public String listUploadedFiles(Model model) {
-		return "upload-form";
-	}
  
 	@RequestMapping(value="/pengajuan/view/{idSurat}/upload", method= RequestMethod.POST)
 	public ModelAndView handleFileUpload(@PathVariable(value = "idSurat") int idSurat, @RequestParam("file") MultipartFile file, ModelMap model) {
@@ -73,18 +69,6 @@ public class UploadController {
 		return new ModelAndView("redirect:/pengajuan/view/"+pengajuanSuratModel.getId(),model);
 	}
 	
-	
- 
-	@GetMapping("/gellallfiles")
-	public String getListFiles(Model model) {
-		model.addAttribute("files",
-				files.stream()
-						.map(fileName -> MvcUriComponentsBuilder
-								.fromMethodName(UploadController.class, "getFile", fileName).build().toString())
-						.collect(Collectors.toList()));
-		model.addAttribute("totalFiles", "TotalFiles: " + files.size());
-		return "list-file";
-	}
 	
 	@GetMapping("/files/{noSurat:.+}")
 	@ResponseBody
