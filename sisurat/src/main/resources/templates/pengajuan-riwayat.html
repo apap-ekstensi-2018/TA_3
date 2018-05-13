@@ -59,16 +59,6 @@
                                     <table class="table table-bordered">
                                         <tbody>
                                             <tr>
-												<th scope="row">Nama Pengaju</th>
-												<th>
-													<div class="row col-md-10">
-														<div class="col-md-5">
-															<label class="control-label" th:text="${mahasiswa.nama}"></label>
-														</div>
-													</div>	
-												</th>
-                                            </tr>
-                                            <tr>
                                                 <th scope="row">Jenis Surat</th>
                                                 <td>
 													<div class="row col-md-10">
@@ -156,7 +146,7 @@
             </div>
             <!-- End Container fluid  -->
             <!-- footer -->
-            <footer class="footer"> © 2018 All rights reserved. Template designed by <a href="https://colorlib.com">Colorlib</a></footer>
+            <div th:replace = "fragments/fragment :: inform" ></div>
             <!-- End footer -->
         </div>
         <!-- End Page wrapper  -->

@@ -77,4 +77,21 @@ public class SuratServiceDatabase implements SuratService
         return suratMapper.selectSurat(no_surat);
 		
 	}
+	@Override
+	public void updatePengajuan(PengajuanSuratModel pengajuan_surat) {
+		suratMapper.updatePengajuan(pengajuan_surat);
+	}
+	@Override
+	public boolean insertDokumenName(String nama_dokumen, int id) {
+		return suratMapper.insertNamaDokumen(nama_dokumen, id);
+	}
+	@Override
+	public PengajuanSuratModel selectPengajuan(String noSurat) {
+		PengajuanSuratModel pengajuanSuratModel = suratMapper.selectPengajuanSuratByNoSurat(noSurat);
+		JenisSuratModel jenisSuratModel = suratMapper.selectJenisSuratById(pengajuanSuratModel.getId_jenis_surat());
+		pengajuanSuratModel.setJenis_surat(jenisSuratModel);
+		StatusSuratModel statusSuratModel = suratMapper.selectStatusSuratById(pengajuanSuratModel.getId_status_surat());
+		pengajuanSuratModel.setStatus_surat(statusSuratModel);
+		return pengajuanSuratModel;
+	}
 }

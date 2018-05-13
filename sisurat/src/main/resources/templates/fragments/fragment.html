@@ -52,7 +52,7 @@
 	                        </li>
 	                        <li> <a th:if ="${#httpServletRequest.isUserInRole('MAHASISWA')}" href="/pengajuan/riwayat" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Daftar Surat</span></a>
 	                        </li>
-	                        <li> <a th:if ="${#httpServletRequest.isUserInRole('STAF')}" href="/pengajuan/viewall" aria-expanded="false"><i class="fa fa-wpforms"></i><span class="hide-menu">Daftar Surat</span></a>
+	                        <li> <a th:if ="${#httpServletRequest.isUserInRole('DOSEN') || #httpServletRequest.isUserInRole('STAF')}" href="/pengajuan/viewall" aria-expanded="false"><i class="fa fa-wpforms"></i><span class="hide-menu">Daftar Surat</span></a>
 	                        </li>
 	                        <li> <a th:if ="${#httpServletRequest.isUserInRole('MAHASISWA')}" href="/pengajuan/tambah" aria-expanded="false"><i class="fa fa-wpforms"></i><span class="hide-menu">Ajukan Surat</span></a>
 	                        </li>
@@ -69,6 +69,8 @@
 	        </div>
 	        <!-- End Left Sidebar  -->
 	      </div>
-		
+		<div th:fragment="inform">
+		<footer class="footer"> © 2018 All rights reserved. SISURAT by TA_3</a></footer>
+            </div>
 	</body>
 </html>  

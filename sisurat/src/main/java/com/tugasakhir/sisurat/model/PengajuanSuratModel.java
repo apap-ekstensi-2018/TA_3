@@ -34,9 +34,11 @@ public class PengajuanSuratModel {
 	private Integer id_status_surat;
 	private String username_pegawai;
 	private String status;
+	private String nama_dokumen;
 	
 	private StatusSuratModel status_surat;
 	private JenisSuratModel jenis_surat;
 	private MahasiswaModel pengaju;
 	private PegawaiModel pegawai;
+	private MataKuliahModel mata_kuliah;
 }

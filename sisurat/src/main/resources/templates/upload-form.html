@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -39,17 +39,21 @@
 		<div th:replace = "fragments/fragment :: menu" ></div>
         <!-- Page wrapper  -->
         <div class="page-wrapper">
-            <!-- Bread crumb -->
-            <div class="row page-titles">
+  			<div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-primary">Beranda</h3> 
-                    <h5>Pengajuan Surat Berhasil Ditambah</h5>
-                    </div>
-                    <br/>
-                    </div>
-                <div class="col-md-7 align-self-center">
-                  
-                </div>
+                <div th:if="${message}">
+					<h2 th:text="${message}"/>
+				</div>
+		<form method="POST" enctype="multipart/form-data" th:action="@{/upload}">
+		  <div class="form-group">
+		    <label>Masukkan dokumen yang akan diunggah</label>
+		    <label>*maksimum ukuran file 1MB</label>
+		    <input type="file" class="form-control-file" id="file" name="file"/><br>
+		    <input type="submit" class="btn btn-primary mb-2"/>
+		  </div>
+		</form>
+	</div>
+	</div>
             </div>
             <!-- End Bread crumb -->
             <!-- Container fluid  -->
@@ -58,7 +62,7 @@
             </div>
             <!-- End Container fluid  -->
             <!-- footer -->
-            <footer class="footer"> © 2018 All rights reserved. Template designed by <a href="https://colorlib.com">Colorlib</a></footer>
+            <div th:replace = "fragments/fragment :: inform" ></div>
             <!-- End footer -->
         </div>
         <!-- End Page wrapper  -->

@@ -22,8 +22,8 @@ public class MataKuliahServiceRest implements MataKuliahService {
 
 	@Override
 	public MataKuliahModel selectMataKuliah(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("REST - select mata kuliah by Id");
+		return mataKuliahDAO.selectMatakuliahById(id);
 	}
 
 	@Override

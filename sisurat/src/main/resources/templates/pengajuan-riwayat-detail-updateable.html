@@ -56,7 +56,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered">
+                                    <table class="table">
                                         <tbody>
                                             <tr>
 												<th scope="row ">Nama Pengaju</th>
@@ -130,28 +130,6 @@
 												</th>
                                             </tr> 
                                             <tr>
-												<th scope="row">Status Surat</th>
-												<th>
-													<div class="row col-md-12">
-														<div class="col-md-12">
-															<label class="control-label" th:text="${pengajuan_surat.status_surat.nama}"></label>
-														</div>
-													</div>	
-												</th>
-                                            </tr> 
-                                             <tr>
-												<th scope="row">File Surat</th>
-												<th>
-													<div class="row col-md-12">
-														<div class="col-md-12">
-															<div th:switch="${pengajuan_surat.id_status_surat}">
-																<a  th:case="4" th:href="@{'/pengajuan/riwayat/download/'+${pengajuan_surat.no_surat}}"><button type="submit" class="btn btn-info"> <i class="fa fa-eye"></i> Download File</button></a>
-															</div>
-														</div>
-													</div>	
-												</th>
-                                            </tr> 
-                                            <tr>
 												<th scope="row">Pemeriksa permonohan : </th>
 												<th>
 													<div class="row col-md-12">
@@ -161,6 +139,71 @@
 													</div>	
 												</th>
                                             </tr> 
+                                            <tr>
+												<th scope="row ">Status Surat</th>
+												<th>
+													<form th:action="@{/pengajuan/ubah/}+${pengajuan_surat.id}" method="post" th:object="${pengajuan_surat}">
+													<input type="hidden" th:field="*{id}" name="id" />
+													<input type="hidden" th:field="*{id_jenis_surat}" name="id_jenis_surat" />
+													<div class="row" >
+			                                            <div class="col-md-6">
+			                                                <div class="form-group row">
+			                                                    <div class="col-md-9">
+			                                                        <select class="form-control" required="required" id="id_jenis" th:field="*{id_status_surat}" name="jenis_surat"> 
+																		 		<option th:each="status : ${status_surats}" th:value="${status.id}" th:text="${status.nama}" ></option>
+																		 	</select>
+			                                                    </div>
+			                                                </div>
+			                                            </div>
+			                                            <!--/span-->
+			                                            <div class="col-md-6">
+			                                                <div class="form-group row">
+			                                                    <div class="col-md-9">
+			                                                        <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Update Status</button>
+			                                                    </div>
+			                                                </div>
+			                                            </div>
+			                                            <!--/span-->
+			                                        </div>
+			                                        </form>
+												</th>
+                                            </tr> 
+                                            <tr th:if="${(pengajuan_surat.id_status_surat==3 || pengajuan_surat.id_status_surat==4)}">
+												<th scope="row ">File Surat</th>
+												<th>
+													<div class="row" >
+			                                            <div class="col-md-6">
+			                                                <div class="form-group row">
+			                                                    <div class="col-md-9">
+			                                                        <label class="control-label" th:text="${pengajuan_surat.nama_dokumen}">Kuliah</label>
+			                                                    </div>
+			                                                </div>
+			                                            </div>
+			                                            </div>
+			                                           
+			                                            <!--/span-->
+			                                             <div th:if="${(pengajuan_surat.id_status_surat==3)}" class="row">
+			                                            <div class="col-md-10">
+			                                                <div class="form-group row">
+			                                                    <div class="col-md-9">
+																				<div th:if="${(param.message != null)}"><label th:text="${param.message}"/></div>
+																				<form method="POST" enctype="multipart/form-data" th:action="@{'/pengajuan/view/'+${pengajuan_surat.id}+'/upload'}">
+																				<div class="form-group">
+																				    <input type="file" class="form-control-file" id="file" name="file" required="required"/><br>
+																				    <input type="submit" class="btn btn-primary mb-2"/>
+																			  	</div>
+																				</form>
+																			</div>
+																		</div>
+														            </div>
+			                                                    </div>
+			                                                </div>
+			                                            </div>
+			                                            <!--/span-->
+			                                        </div>
+			                                        </form>
+												</th>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -169,7 +212,7 @@
                 <!-- End PAge Content -->
             </div>
             <!-- End Container fluid  -->
-            <!-- footer -->
+           <!-- footer -->
             <div th:replace = "fragments/fragment :: inform" ></div>
             <!-- End footer -->
         </div>
