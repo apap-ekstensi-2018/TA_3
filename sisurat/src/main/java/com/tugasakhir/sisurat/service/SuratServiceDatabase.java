@@ -37,7 +37,14 @@ public class SuratServiceDatabase implements SuratService
 	@Override
 	public List<PengajuanSuratModel> selectAllPengajuanSurat() {
 		log.info("Tampilkan data pengajuan surat");
-		return suratMapper.selectAllPengajuanSurat();
+		List<PengajuanSuratModel> pengajuanSuratModels = suratMapper.selectAllPengajuanSurat();
+		for(int i=0;i<pengajuanSuratModels.size();i++) {
+			JenisSuratModel jenisSuratModel = suratMapper.selectJenisSuratById(((ArrayList<PengajuanSuratModel>)pengajuanSuratModels).get(i).getId_jenis_surat());
+			pengajuanSuratModels.get(i).setJenis_surat(jenisSuratModel);
+			StatusSuratModel statusSuratModel = suratMapper.selectStatusSuratById(pengajuanSuratModels.get(i).getId_status_surat());
+			pengajuanSuratModels.get(i).setStatus_surat(statusSuratModel);
+		}
+		return pengajuanSuratModels;
 	}
 	
 	@Override

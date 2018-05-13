@@ -99,6 +99,7 @@ public class SuratController {
 		List<JenisSuratModel> jenis_surat = suratDAO.selectJenisSurat();
 		List<StatusSuratModel> status_surat = suratDAO.selectStatusSurat();
 		List<PengajuanSuratModel> list_pengajuan_surat = suratDAO.selectPengajuanSuratByMhs(username);
+		log.info(list_pengajuan_surat.toString());
 		for(int i=0;i<list_pengajuan_surat.size();i++) {
 			MahasiswaModel mahasiswa = mahasiswaService.selectMahasiswa(list_pengajuan_surat.get(i).getUsername_pengaju());
 			list_pengajuan_surat.get(i).setPengaju(mahasiswa);
@@ -145,6 +146,7 @@ public class SuratController {
 		List<JenisSuratModel> jenis_surat = suratDAO.selectJenisSurat();
 		List<StatusSuratModel> status_surat = suratDAO.selectStatusSurat();
 		List<PengajuanSuratModel> list_pengajuan_surat = suratDAO.selectAllPengajuanSurat();
+		log.info(list_pengajuan_surat.toString());
 		for(int i=0;i<list_pengajuan_surat.size();i++) {
 			MahasiswaModel mahasiswa = mahasiswaService.selectMahasiswa(list_pengajuan_surat.get(i).getUsername_pengaju());
 			list_pengajuan_surat.get(i).setPengaju(mahasiswa);
