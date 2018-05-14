@@ -8,6 +8,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
+import javax.xml.ws.RequestWrapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.core.io.Resource;
@@ -91,7 +93,7 @@ public class SuratController {
 		
 		return "form-pengajuan-tambah";
 	}
-	
+
 	@RequestMapping(value="/pengajuan/riwayat", method=RequestMethod.GET)
 	public String riwayat(@ModelAttribute("pengajuan_surat") PengajuanSuratModel pengajuan_surat, Model model) {
 		// get current user logged
@@ -213,6 +215,7 @@ public class SuratController {
 		model.addAttribute("list_pengajuan_surat", list_pengajuan_surat);
 		return "pengajuan-riwayat";
 	}
+
 	
 	@RequestMapping (value="/pengajuan/viewall/filterByJenis", method= RequestMethod.GET)
 	public String filterByJenis(Model model,@ModelAttribute("pengajuan_surat") PengajuanSuratModel pengajuan_surat,
