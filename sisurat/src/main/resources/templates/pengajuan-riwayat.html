@@ -55,40 +55,20 @@
                                 <h4>Pencarian Berdasarkan</h4>
                             </div>
                             <script>
-	                            function show(){
-									if (document.getElementById('filterBy1').checked) {
-										$("#jenis_form").attr('required', 'required');
-										document.getElementById('jenis').style.display = 'block';
-								        document.getElementById('tanggal').style.display = 'none';
-								        document.getElementById('status').style.display = 'none';
-								        document.getElementById('jenisButton').style.display = 'block';
-								        document.getElementById('tanggalButton').style.display = 'none';
-								        document.getElementById('statusButton').style.display = 'none';
-								    } else if(document.getElementById('filterBy2').checked){
-								    	$("#tanggal_mulai_izin_form").attr('required', 'required');
-								    	$("#tanggal_selesai_izin_form").attr('required', 'required');
-								    	document.getElementById('tanggal').style.display = 'block';
-								        document.getElementById('jenis').style.display = 'none';
-								        document.getElementById('status').style.display = 'none';
-								        document.getElementById('jenisButton').style.display = 'none';
-								        document.getElementById('tanggalButton').style.display = 'block';
-								        document.getElementById('statusButton').style.display = 'none';
-								    } else if(document.getElementById('filterBy3').checked){
-								    	$("#status_form").attr('required', 'required');
-								        document.getElementById('status').style.display = 'block';
-								        document.getElementById('jenis').style.display = 'none';
-								        document.getElementById('tanggal').style.display = 'none';
-								        document.getElementById('jenisButton').style.display = 'none';
-								        document.getElementById('tanggalButton').style.display = 'none';
-								        document.getElementById('statusButton').style.display = 'block';
-								    }else {
-								        document.getElementById('jenis').style.display = 'none';
-								        document.getElementById('tanggal').style.display = 'none';
-								        document.getElementById('status').style.display = 'none';
-								        document.getElementById('jenisButton').style.display = 'block';
-								        document.getElementById('tanggalButton').style.display = 'none';
-								        document.getElementById('statusButton').style.display = 'none';
-								    }
+	                            function OnJenis(){
+									    document.getElementById('formJenis').style.display = 'block';
+								        document.getElementById('formTanggal').style.display = 'none';
+								        document.getElementById('formStatus').style.display = 'none';
+								}
+	                            function OnTanggal(){
+								    	document.getElementById('formJenis').style.display = 'none';
+								        document.getElementById('formTanggal').style.display = 'block';
+								        document.getElementById('formStatus').style.display = 'none';
+								    } 
+	                            function OnStatus(){
+								    	document.getElementById('formJenis').style.display = 'none';
+								        document.getElementById('formTanggal').style.display = 'none';
+								        document.getElementById('formStatus').style.display = 'block';
 								function DateCheck()
 									{
 									  var StartDate= document.getElementById('tanggal_mulai_izin_form').value;
@@ -102,115 +82,162 @@
 									}	
 								}
 	                            </script>
-                            <form name = "formSearch" method="get" th:object="${pengajuan_surat}">
-	                            <div class="card-body">
+                                <div class="card-body">
 	                                <div class="table-responsive">
-	                                    <table class="table table-bordered">
-	                                        <tbody>
-	                                            <tr>
-	                                            	<th>
-														<div class="row col-md-10">
-															<div class="col-md-5">
-																<input type="radio" id="filterBy1" value="1" name="filterBy" checked = "checked" onclick='show()'>Jenis Surat</input>
-																<input type="radio" id="filterBy2" value="2" name="filterBy" onclick='show()'>Tanggal Pengajuan</input>
-																<input type="radio" id="filterBy3" value="3" name="filterBy" onclick='show()'>Status</input>
-															</div>
-														</div>	
-													</th>
-	                                            </tr>
-	                                            <tr id="jenis">
-	                                                <th>
-														<div class="row col-md-10">
-															<select class="form-control" id="jenis_form" th:field="*{id_jenis_surat}" name="id_jenis_surat">
-																<option disabled="disabled" selected="selected" value="0">--Pilih Jenis Surat--</option>
-															    <option th:each="jenis : ${jenis_surat}" th:value="${jenis.id}" th:text="${jenis.nama}"></option>
-														    </select>
-														    </div>
-													</th>
-	                                            </tr>
-	                                            <!-- <tr id="tanggal" style="display: none">
-													<th>
-													
-														<div class="row col-md-10">
-														<div class="form-group row">
-		                                                    <label class="control-label text-right col-md-3" for="tanggal_mulai_izin">Tanggal Izin</label>
-		                                                    <div class="col-md-9">
-		                                                        <input type="date" class="form-control input-default "  th:field="*{tanggal_mulai_izin}" onchange='DateCheck()'  id="tanggal_mulai_izin_form" name="tanggal_mulai_izin" />
-		                                                    </div>
-															/span
-															<div class="form-group row">
-			                                                    <label class="control-label text-center col-xs-2" for="tanggal_selesai_izin">s/d</label>
-			                                                    <div class="col-md-9">
-			                                                        <input type="date" class="form-control input-default " th:field="*{tanggal_selesai_izin}" onchange='DateCheck()' id="tanggal_selesai_izin_form" name="tanggal_selesai_izin"/>
-			                                                    </div>
-			                                                </div>
-														</div>
-														</div>
-	                                          		 /span
-													</th>
-	                                            </tr> -->
-	                                            <tr id="status" style="display: none">
-	                                                <th>
-	                                                	<div class="row col-md-10">
-														<div class="form-group row">
-															<div class="col-md-9">
+	                                	<button class="btn btn-info" id="filterByJenis" onclick="return OnJenis()"> Jenis Surat</button>
+	                                	<button class="btn btn-info" id="filterByTanggal" onclick="return OnTanggal()"> Tanggal Surat</button>
+	                                	<button class="btn btn-info" id="filterByStatus" onclick="return OnStatus()"> Status Surat</button>
+                                	    <br>
+	                                	    <form th:if ="${#httpServletRequest.isUserInRole('DOSEN') || #httpServletRequest.isUserInRole('STAF')}" style="display: none" id="formJenis" action="/pengajuan/viewall/filterByJenis" th:object="${pengajuan_surat}" method="get">
+			                                    <table class="table table-bordered" style="width:100%">
+			                                        <tbody>
+					                                    <tr>
+			                                               <th>
+																<select class="form-control" id="jenis_form" th:field="*{id_jenis_surat}" name="id_jenis_surat">
+																	<option disabled="disabled" selected="selected" value="0">--Pilih Jenis Surat--</option>
+																    <option th:each="jenis : ${jenis_surat}" th:value="${jenis.id}" th:text="${jenis.nama}"></option>
+															    </select>
+															</th>
+			                                           	</tr>
+			                                           	<tr>
+															<th>    
+															    <button style="display: block" class="btn btn-info"> <i class="fa fa-search"></i> Cari</button>
+															</th>
+			                                            </tr>
+		                                            </tbody>
+	                                            </table>
+	                                         </form>
+	                                         <form th:unless ="${#httpServletRequest.isUserInRole('DOSEN') || #httpServletRequest.isUserInRole('STAF')}" style="display: none" id="formJenis" action="/pengajuan/riwayat/filterByJenis" th:object="${pengajuan_surat}" method="get">
+			                                    <table class="table table-bordered" style="width:100%">
+			                                        <tbody>
+					                                    <tr>
+			                                               <th>
+																<select class="form-control" id="jenis_form" th:field="*{id_jenis_surat}" name="id_jenis_surat">
+																	<option disabled="disabled" selected="selected" value="0">--Pilih Jenis Surat--</option>
+																    <option th:each="jenis : ${jenis_surat}" th:value="${jenis.id}" th:text="${jenis.nama}"></option>
+															    </select>
+															</th>
+			                                           	</tr>
+			                                           	<tr>
+															<th>    
+															    <button style="display: block" class="btn btn-info"> <i class="fa fa-search"></i> Cari</button>
+															</th>
+			                                            </tr>
+		                                            </tbody>
+	                                            </table>
+	                                         </form>
+	                                         <form th:if ="${#httpServletRequest.isUserInRole('DOSEN') || #httpServletRequest.isUserInRole('STAF')}" style="display: none" id="formTanggal" action="/pengajuan/viewall/filterByDate" th:object="${pengajuan_surat}" method="get">
+			                                    <table class="table table-bordered" style="width:100%">
+			                                        <tbody>
+					                                    <tr>
+															<th>
+																<div class="row" >
+						                                            <div class="col-md-6">
+						                                                <div class="form-group row">
+						                                                    <label class="control-label text-right col-md-3" for="tanggal_mulai_izin">Tanggal Izin</label>
+						                                                    <div class="col-md-9">
+						                                                        <input type="date" class="form-control input-default " onchange='DateCheck()'  id="tanggal_mulai_izin_form" name="tanggal_mulai_izin" th:field="*{tanggal_mulai_izin}" />
+						                                                    </div>
+						                                                </div>
+						                                            </div>
+						                                            <!--/span-->
+						                                            <div class="col-md-6">
+						                                                <div class="form-group row">
+						                                                    <label class="control-label text-center col-xs-2" for="tanggal_selesai_izin">s/d</label>
+						                                                    <div class="col-md-9">
+						                                                        <input type="date" class="form-control input-default " onchange='DateCheck()' id="tanggal_selesai_izin_form" name="tanggal_selesai_izin" th:field="*{tanggal_selesai_izin}" />
+						                                                    </div>
+						                                                </div>
+						                                            </div>
+						                                            <!--/span-->
+						                                        </div>
+															</th>
+			                                            </tr>
+			                                           	<tr>
+			                                                <th>    
+															    <button style="display: block" class="btn btn-info"> <i class="fa fa-search"></i> Cari</button>
+															</th>
+			                                            </tr>
+		                                            </tbody>
+	                                            </table>
+	                                         </form>
+	                                         <form th:unless ="${#httpServletRequest.isUserInRole('DOSEN') || #httpServletRequest.isUserInRole('STAF')}" style="display: none" id="formTanggal" action="/pengajuan/riwayat/filterByDate" th:object="${pengajuan_surat}" method="get">
+			                                    <table class="table table-bordered" style="width:100%">
+			                                        <tbody>
+					                                    <tr>
+															<th>
+																<div class="row" >
+						                                            <div class="col-md-6">
+						                                                <div class="form-group row">
+						                                                    <label class="control-label text-right col-md-3" for="tanggal_mulai_izin">Tanggal Izin</label>
+						                                                    <div class="col-md-9">
+						                                                        <input type="date" class="form-control input-default " onchange='DateCheck()'  id="tanggal_mulai_izin_form" name="tanggal_mulai_izin" th:field="*{tanggal_mulai_izin}" />
+						                                                    </div>
+						                                                </div>
+						                                            </div>
+						                                            <!--/span-->
+						                                            <div class="col-md-6">
+						                                                <div class="form-group row">
+						                                                    <label class="control-label text-center col-xs-2" for="tanggal_selesai_izin">s/d</label>
+						                                                    <div class="col-md-9">
+						                                                        <input type="date" class="form-control input-default " onchange='DateCheck()' id="tanggal_selesai_izin_form" name="tanggal_selesai_izin" th:field="*{tanggal_selesai_izin}" />
+						                                                    </div>
+						                                                </div>
+						                                            </div>
+						                                            <!--/span-->
+						                                        </div>
+															</th>
+			                                            </tr>
+			                                           	<tr>
+			                                                <th>    
+															    <button style="display: block" class="btn btn-info"> <i class="fa fa-search"></i> Cari</button>
+															</th>
+			                                            </tr>
+		                                            </tbody>
+	                                            </table>
+	                                         </form>
+	                                         <form th:if ="${#httpServletRequest.isUserInRole('DOSEN') || #httpServletRequest.isUserInRole('STAF')}" style="display: none" id="formStatus" action="/pengajuan/viewall/filterByStatus" th:object="${pengajuan_surat}" method="get">
+			                                    <table class="table table-bordered">
+			                                        <tbody>
+					                                    <tr>
+		                                                	<th>
 																<select class="form-control" id="id_status_surat" th:field="*{id_status_surat}" name="id_status_surat">
 																	<option disabled="disabled" selected="selected" value="0">--Status Surat--</option>
 																    <option th:each="status : ${status_surat}" th:value="${status.id}" th:text="${status.nama}"></option>
 															    </select>
-															</div>
-														</div>
-														</div>
-													</th>
-	                                            </tr>
-												<tr>
-	                                                <th th:if ="${#httpServletRequest.isUserInRole('DOSEN') || #httpServletRequest.isUserInRole('STAF')}">
-	                                                    <button style="display: block" class="btn btn-info" id="jenisButton" onclick="return OnJenisViewButton()"> <i class="fa fa-search"></i> Cari</button>
-													    <button style="display: none" class="btn btn-info" id="tanggalButton" onclick="return OnTanggalViewButton()"> <i class="fa fa-search"></i> Cari</button>
-													    <button style="display: none" class="btn btn-info" id="statusButton" onclick="return OnStatusViewButton()"> <i class="fa fa-search"></i> Cari</button>
-													</th>
-													<th th:if ="${#httpServletRequest.isUserInRole('MAHASISWA')}">    
-													    <button style="display: block" class="btn btn-info" id="jenisButton" onclick="return OnJenisRiwayatButton()"> <i class="fa fa-search"></i> Cari</button>
-													    <button style="display: none" class="btn btn-info" id="tanggalButton" onclick="return OnTanggalRiwayatButton()"> <i class="fa fa-search"></i> Cari</button>
-													    <button style="display: none" class="btn btn-info" id="statusButton" onclick="return OnStatusRiwayatButton()"> <i class="fa fa-search"></i> Cari</button>
-													</th>
-	                                            </tr>
-	                                        </tbody>
-	                                    </table>
+															</th>
+			                                            </tr>
+			                                           	<tr>
+			                                                <th >
+															    <button style="display: block" class="btn btn-info"> <i class="fa fa-search"></i> Cari</button>
+															</th>
+			                                            </tr>
+		                                            </tbody>
+	                                            </table>
+	                                         </form>
+	                                         <form th:unless ="${#httpServletRequest.isUserInRole('DOSEN') || #httpServletRequest.isUserInRole('STAF')}"  style="display: none" id="formStatus" action="/pengajuan/riwayat/filterByStatus" th:object="${pengajuan_surat}" method="get">
+			                                    <table class="table table-bordered">
+			                                        <tbody>
+					                                    <tr>
+		                                                	<th>
+																<select class="form-control" id="id_status_surat" th:field="*{id_status_surat}" name="id_status_surat">
+																	<option disabled="disabled" selected="selected" value="0">--Status Surat--</option>
+																    <option th:each="status : ${status_surat}" th:value="${status.id}" th:text="${status.nama}"></option>
+															    </select>
+															</th>
+			                                            </tr>
+			                                           	<tr>
+			                                                <th >
+															    <button style="display: block" class="btn btn-info"> <i class="fa fa-search"></i> Cari</button>
+															</th>
+			                                            </tr>
+		                                            </tbody>
+	                                            </table>
+	                                         </form>
+                                         </div>
 	                                </div>
 	                            </div>
-                            </form>
                         </div>
-                        <script>
-	                        
-	                        
-	                        function OnJenisViewButton(){
-	                        	document.formSearch.action="filterByJenis";
-	                        	document.formSearch.submit;
-	                        }
-	                        function OnTanggalViewButton(){
-	                        	document.formSearch.action="filterByDate";
-	                        	document.formSearch.submit;
-	                        }
-	                        function OnStatusViewButton(){
-	                        	document.formSearch.action="filterByStatus";
-	                        	document.formSearch.submit;
-	                        }
-	                        
-	                        function OnJenisRiwayatButton(){
-	                        	document.formSearch.action="riwayat/filterByJenis";
-	                        	document.formSearch.submit;
-	                        }
-	                        function OnTanggalRiwayatButton(){
-	                        	document.formSearch.action="riwayat/filterByDate";
-	                        	document.formSearch.submit;
-	                        }
-	                        function OnStatusRiwayatButton(){
-	                        	document.formSearch.action="riwayat/filterByStatus";
-	                        	document.formSearch.submit;
-	                        }	                            
-
-                        </script>
                     <!-- /# column -->
 					<div class="card">
                       <div class="card-body">

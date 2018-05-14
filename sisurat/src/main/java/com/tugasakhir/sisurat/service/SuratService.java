@@ -24,7 +24,10 @@ public interface SuratService
 	PengajuanSuratModel selectPengajuan (String noSurat);
 	
 	boolean insertDokumenName(String nama_dokumen, int id);
+	List<PengajuanSuratModel> selectPengajuanSuratByJenisSuratMhs(int id_jenis_surat,String name);
+	List<PengajuanSuratModel> selectPengajuanSuratByStatusSuratMhs(int id_status_surat,String name);
+	List<PengajuanSuratModel> selectPengajuanSuratByTanggalSuratMhs(Date tanggal_mulai_izin,Date tanggal_selesai_izin,String name);
 	List<PengajuanSuratModel> selectPengajuanSuratByJenisSurat(int id_jenis_surat);
-	List<PengajuanSuratModel> selectPengajuanSuratByTanggalSurat(Date tanggal_awal_mohon, Date tanggal_akhir_mohon);
 	List<PengajuanSuratModel> selectPengajuanSuratByStatusSurat(int id_status_surat);
+	List<PengajuanSuratModel> selectPengajuanSuratByTanggalSurat(Date tanggal_mulai_izin,Date tanggal_selesai_izin);
 }

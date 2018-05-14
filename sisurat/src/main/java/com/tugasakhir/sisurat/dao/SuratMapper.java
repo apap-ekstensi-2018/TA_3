@@ -75,6 +75,15 @@ public interface SuratMapper
 	List<PengajuanSuratModel> selectPengajuanSuratByStatusSurat(int id_status_surat);
 	
 	@Select("SELECT * FROM pengajuan_surat where tanggal_mohon between #{tanggal_mulai_izin} and #{tanggal_selesai_izin}")
-	List<PengajuanSuratModel> selectPengajuanSuratByTanggalSurat(Date tanggal_mulai_izin, Date tanggal_selesai_izin);
+	List<PengajuanSuratModel> selectPengajuanSuratByTanggalSurat(@Param("tanggal_mulai_izin")Date tanggal_mulai_izin, @Param("tanggal_selesai_izin") Date tanggal_selesai_izin);
+	
+	@Select("SELECT * FROM pengajuan_surat where id_jenis_surat =#{id_jenis_surat} and username_pengaju=#{username_pengaju}")
+	List<PengajuanSuratModel> selectPengajuanSuratByJenisSuratMhs(@Param("id_jenis_surat")int id_jenis_surat, @Param("username_pengaju") String username_pengaju);
+	
+	@Select("SELECT * FROM pengajuan_surat where id_status_surat =#{id_status_surat} and username_pengaju=#{username_pengaju}")
+	List<PengajuanSuratModel> selectPengajuanSuratByStatusSuratMhs(@Param("id_status_surat")int id_jenis_surat, @Param("username_pengaju") String username_pengaju);
+	
+	@Select("SELECT * FROM pengajuan_surat where tanggal_mohon between #{tanggal_mulai_izin} and #{tanggal_selesai_izin} and username_pengaju=#{username_pengaju}")
+	List<PengajuanSuratModel> selectPengajuanSuratByTanggalSuratMhs(@Param("tanggal_mulai_izin")Date tanggal_mulai_izin, @Param("tanggal_selesai_izin") Date tanggal_selesai_izin, @Param("username_pengaju") String username_pengaju);
 	
 }
