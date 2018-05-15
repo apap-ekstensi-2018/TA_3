@@ -168,7 +168,7 @@
 			                                        </form>
 												</th>
                                             </tr> 
-                                            <tr th:if="${(pengajuan_surat.id_status_surat==3 || pengajuan_surat.id_status_surat==4)}">
+                                            <tr th:if="${((pengajuan_surat.id_jenis_surat>=3 && pengajuan_surat.id_jenis_surat<=5) && pengajuan_surat.id_status_surat>=3)}">
 												<th scope="row ">File Surat</th>
 												<th>
 													<div class="row" >

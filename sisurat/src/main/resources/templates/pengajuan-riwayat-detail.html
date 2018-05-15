@@ -139,7 +139,7 @@
 													</div>	
 												</th>
                                             </tr> 
-                                             <tr>
+                                             <tr th:if="${((pengajuan_surat.id_jenis_surat>=3 && pengajuan_surat.id_jenis_surat<=5))}">
 												<th scope="row">File Surat</th>
 												<th>
 													<div class="row col-md-12">
@@ -151,7 +151,7 @@
 													</div>	
 												</th>
                                             </tr> 
-                                            <tr>
+                                            <tr >
 												<th scope="row">Pemeriksa permonohan : </th>
 												<th>
 													<div class="row col-md-12">
