@@ -20,8 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 
-public class SuratServiceDatabase implements SuratService
-{
+public class SuratServiceDatabase implements SuratService {
 	@Autowired
 	private SuratMapper suratMapper;
 
@@ -30,91 +29,106 @@ public class SuratServiceDatabase implements SuratService
 		log.info("Tampilkan data jenis surat");
 		return suratMapper.selectJenisSurat();
 	}
+
 	@Override
 	public List<StatusSuratModel> selectStatusSurat() {
 		log.info("Tampilkan data status surat");
 		return suratMapper.selectStatusSurat();
 	}
+
 	@Override
 	public List<PengajuanSuratModel> selectAllPengajuanSurat() {
 		log.info("Tampilkan data pengajuan surat");
 		List<PengajuanSuratModel> pengajuanSuratModels = suratMapper.selectAllPengajuanSurat();
-		for(int i=0;i<pengajuanSuratModels.size();i++) {
-			JenisSuratModel jenisSuratModel = suratMapper.selectJenisSuratById(((ArrayList<PengajuanSuratModel>)pengajuanSuratModels).get(i).getId_jenis_surat());
+		for (int i = 0; i < pengajuanSuratModels.size(); i++) {
+			JenisSuratModel jenisSuratModel = suratMapper.selectJenisSuratById(
+					((ArrayList<PengajuanSuratModel>) pengajuanSuratModels).get(i).getId_jenis_surat());
 			pengajuanSuratModels.get(i).setJenis_surat(jenisSuratModel);
-			StatusSuratModel statusSuratModel = suratMapper.selectStatusSuratById(pengajuanSuratModels.get(i).getId_status_surat());
+			StatusSuratModel statusSuratModel = suratMapper
+					.selectStatusSuratById(pengajuanSuratModels.get(i).getId_status_surat());
 			pengajuanSuratModels.get(i).setStatus_surat(statusSuratModel);
 		}
 		return pengajuanSuratModels;
 	}
-	
+
 	@Override
 	public List<PengajuanSuratModel> selectPengajuanSuratByJenisSurat(int id_jenis_surat) {
 		log.info("Tampilkan data pengajuan surat");
 		List<PengajuanSuratModel> pengajuanSuratModels = suratMapper.selectPengajuanSuratByJenisSurat(id_jenis_surat);
-		for(int i=0;i<pengajuanSuratModels.size();i++) {
-			JenisSuratModel jenisSuratModel = suratMapper.selectJenisSuratById(((ArrayList<PengajuanSuratModel>)pengajuanSuratModels).get(i).getId_jenis_surat());
+		for (int i = 0; i < pengajuanSuratModels.size(); i++) {
+			JenisSuratModel jenisSuratModel = suratMapper.selectJenisSuratById(
+					((ArrayList<PengajuanSuratModel>) pengajuanSuratModels).get(i).getId_jenis_surat());
 			pengajuanSuratModels.get(i).setJenis_surat(jenisSuratModel);
-			StatusSuratModel statusSuratModel = suratMapper.selectStatusSuratById(pengajuanSuratModels.get(i).getId_status_surat());
+			StatusSuratModel statusSuratModel = suratMapper
+					.selectStatusSuratById(pengajuanSuratModels.get(i).getId_status_surat());
 			pengajuanSuratModels.get(i).setStatus_surat(statusSuratModel);
-//			pengajuanSuratModels.get(i).setUsername_pengaju(null);;
+			// pengajuanSuratModels.get(i).setUsername_pengaju(null);;
 		}
 		return pengajuanSuratModels;
 	}
-	
+
 	@Override
-	public List<PengajuanSuratModel> selectPengajuanSuratByTanggalSurat(Date tanggal_awal_mohon, Date tanggal_akhir_mohon) {
+	public List<PengajuanSuratModel> selectPengajuanSuratByTanggalSurat(Date tanggal_awal_mohon,
+			Date tanggal_akhir_mohon) {
 		log.info("Tampilkan data pengajuan surat");
-		List<PengajuanSuratModel> pengajuanSuratModels = suratMapper.selectPengajuanSuratByTanggalSurat(tanggal_akhir_mohon, tanggal_akhir_mohon);
-		for(int i=0;i<pengajuanSuratModels.size();i++) {
-			JenisSuratModel jenisSuratModel = suratMapper.selectJenisSuratById(((ArrayList<PengajuanSuratModel>)pengajuanSuratModels).get(i).getId_jenis_surat());
+		List<PengajuanSuratModel> pengajuanSuratModels = suratMapper
+				.selectPengajuanSuratByTanggalSurat(tanggal_akhir_mohon, tanggal_akhir_mohon);
+		for (int i = 0; i < pengajuanSuratModels.size(); i++) {
+			JenisSuratModel jenisSuratModel = suratMapper.selectJenisSuratById(
+					((ArrayList<PengajuanSuratModel>) pengajuanSuratModels).get(i).getId_jenis_surat());
 			pengajuanSuratModels.get(i).setJenis_surat(jenisSuratModel);
-			StatusSuratModel statusSuratModel = suratMapper.selectStatusSuratById(pengajuanSuratModels.get(i).getId_status_surat());
+			StatusSuratModel statusSuratModel = suratMapper
+					.selectStatusSuratById(pengajuanSuratModels.get(i).getId_status_surat());
 			pengajuanSuratModels.get(i).setStatus_surat(statusSuratModel);
-//			PegawaiModel pegawaiModel = suratMapper.selectStatusSuratById(pengajuanSuratModels.get(i).getId_status_surat());
-//			pengajuanSuratModels.get(i).setUsername_pengaju(null);;
+			// PegawaiModel pegawaiModel =
+			// suratMapper.selectStatusSuratById(pengajuanSuratModels.get(i).getId_status_surat());
+			// pengajuanSuratModels.get(i).setUsername_pengaju(null);;
 		}
 		return pengajuanSuratModels;
 	}
-	
+
 	@Override
 	public List<PengajuanSuratModel> selectPengajuanSuratByStatusSurat(int id_status_surat) {
 		log.info("Tampilkan data pengajuan surat");
-		List<PengajuanSuratModel> pengajuanSuratModels = suratMapper.selectPengajuanSuratByStatusSurat(id_status_surat);;
-		for(int i=0;i<pengajuanSuratModels.size();i++) {
-			JenisSuratModel jenisSuratModel = suratMapper.selectJenisSuratById(((ArrayList<PengajuanSuratModel>)pengajuanSuratModels).get(i).getId_jenis_surat());
+		List<PengajuanSuratModel> pengajuanSuratModels = suratMapper.selectPengajuanSuratByStatusSurat(id_status_surat);
+		;
+		for (int i = 0; i < pengajuanSuratModels.size(); i++) {
+			JenisSuratModel jenisSuratModel = suratMapper.selectJenisSuratById(
+					((ArrayList<PengajuanSuratModel>) pengajuanSuratModels).get(i).getId_jenis_surat());
 			pengajuanSuratModels.get(i).setJenis_surat(jenisSuratModel);
-			StatusSuratModel statusSuratModel = suratMapper.selectStatusSuratById(pengajuanSuratModels.get(i).getId_status_surat());
+			StatusSuratModel statusSuratModel = suratMapper
+					.selectStatusSuratById(pengajuanSuratModels.get(i).getId_status_surat());
 			pengajuanSuratModels.get(i).setStatus_surat(statusSuratModel);
-//			pengajuanSuratModels.get(i).setUsername_pengaju(null);;
+			// pengajuanSuratModels.get(i).setUsername_pengaju(null);;
 		}
 		return pengajuanSuratModels;
 	}
-	
+
 	@Override
-	public void insertPengajuan (PengajuanSuratModel pengajuan_surat)
-    {
+	public void insertPengajuan(PengajuanSuratModel pengajuan_surat) {
 		suratMapper.insertPengajuan(pengajuan_surat);
-    }
-	
+	}
+
 	@Override
 	public int getLastidSurat() {
 		return suratMapper.getLastIdSurat();
 	}
-	
+
 	@Override
 	public List<PengajuanSuratModel> selectPengajuanSuratByMhs(String name) {
 		log.info("Tampilkan data status surat");
 		List<PengajuanSuratModel> pengajuanSuratModels = suratMapper.selectPengajuanSuratByMhs(name);
-		for(int i=0;i<pengajuanSuratModels.size();i++) {
-			JenisSuratModel jenisSuratModel = suratMapper.selectJenisSuratById(((ArrayList<PengajuanSuratModel>)pengajuanSuratModels).get(i).getId_jenis_surat());
+		for (int i = 0; i < pengajuanSuratModels.size(); i++) {
+			JenisSuratModel jenisSuratModel = suratMapper.selectJenisSuratById(
+					((ArrayList<PengajuanSuratModel>) pengajuanSuratModels).get(i).getId_jenis_surat());
 			pengajuanSuratModels.get(i).setJenis_surat(jenisSuratModel);
-			StatusSuratModel statusSuratModel = suratMapper.selectStatusSuratById(pengajuanSuratModels.get(i).getId_status_surat());
+			StatusSuratModel statusSuratModel = suratMapper
+					.selectStatusSuratById(pengajuanSuratModels.get(i).getId_status_surat());
 			pengajuanSuratModels.get(i).setStatus_surat(statusSuratModel);
 		}
 		return pengajuanSuratModels;
 	}
-	
+
 	@Override
 	public PengajuanSuratModel selectPengajuan(int idSurat) {
 		PengajuanSuratModel pengajuanSuratModel = suratMapper.selectPengajuanSuratById(idSurat);
@@ -124,20 +138,24 @@ public class SuratServiceDatabase implements SuratService
 		pengajuanSuratModel.setStatus_surat(statusSuratModel);
 		return pengajuanSuratModel;
 	}
+
 	@Override
 	public SuratModel selectSurat(String no_surat) {
-		log.info ("select surat with no_surat {}", no_surat);
-        return suratMapper.selectSurat(no_surat);
-		
+		log.info("select surat with no_surat {}", no_surat);
+		return suratMapper.selectSurat(no_surat);
+
 	}
+
 	@Override
 	public void updatePengajuan(PengajuanSuratModel pengajuan_surat) {
 		suratMapper.updatePengajuan(pengajuan_surat);
 	}
+
 	@Override
 	public boolean insertDokumenName(String nama_dokumen, int id) {
 		return suratMapper.insertNamaDokumen(nama_dokumen, id);
 	}
+
 	@Override
 	public PengajuanSuratModel selectPengajuan(String noSurat) {
 		PengajuanSuratModel pengajuanSuratModel = suratMapper.selectPengajuanSuratByNoSurat(noSurat);
@@ -146,5 +164,12 @@ public class SuratServiceDatabase implements SuratService
 		StatusSuratModel statusSuratModel = suratMapper.selectStatusSuratById(pengajuanSuratModel.getId_status_surat());
 		pengajuanSuratModel.setStatus_surat(statusSuratModel);
 		return pengajuanSuratModel;
+	}
+
+	@Override
+	public List<SuratModel> selectAllSurats() {
+
+		log.info("select all surats");
+		return suratMapper.selectAllSurats();
 	}
 }
