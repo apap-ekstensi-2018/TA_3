@@ -15,16 +15,16 @@
 - [x] Login
 - [x] Logout
 - [x] Mengajukan Permohonan Surat
-- [ ] Melihat Daftar Semua Surat yang Telah Diajukan
-- [ ] Menampilkan Detail Surat yang Telah Diajukan
-- [ ] Menampilkan Daftar Seluruh Pengajuan Surat
-- [ ] Menampilkan Detail Pengajuan Surat
-- [ ] Mengubah Status Pengajuan Surat
-- [ ] Mengunggah Surat yang Sudah Selesai Diproses
-- [ ] Mengunduh Surat yang Sudah Selesai Diproses
-- [ ] Melakukan Penyaringan Surat Berdasarkan Jenis
-- [ ] Melakukan Penyaringan Surat Berdasarkan Rentang Tanggal Permohonan
-- [ ] Melakukan Penyaringan Surat Berdasarkan Status Surat
+- [x] Melihat Daftar Semua Surat yang Telah Diajukan
+- [x] Menampilkan Detail Surat yang Telah Diajukan
+- [x] Menampilkan Daftar Seluruh Pengajuan Surat
+- [x] Menampilkan Detail Pengajuan Surat
+- [x] Mengubah Status Pengajuan Surat
+- [x] Mengunggah Surat yang Sudah Selesai Diproses
+- [x] Mengunduh Surat yang Sudah Selesai Diproses
+- [x] Melakukan Penyaringan Surat Berdasarkan Jenis
+- [x] Melakukan Penyaringan Surat Berdasarkan Rentang Tanggal Permohonan
+- [x] Melakukan Penyaringan Surat Berdasarkan Status Surat
 - [x] Web Service untuk Pengecekan Status Surat Pengantar Peminjaman Buku Untuk SIPERPUS
 
 ### Web Service

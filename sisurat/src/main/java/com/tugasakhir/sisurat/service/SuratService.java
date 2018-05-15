@@ -18,6 +18,7 @@ public interface SuratService
 	void insertPengajuan(PengajuanSuratModel pengajuan_surat);
 	void updatePengajuan(PengajuanSuratModel pengajuan_surat);
 	SuratModel selectSurat(String no_surat);
+	List<SuratModel> selectAllSurats();
 	
 	int getLastidSurat();
 	PengajuanSuratModel selectPengajuan (int idSurat);

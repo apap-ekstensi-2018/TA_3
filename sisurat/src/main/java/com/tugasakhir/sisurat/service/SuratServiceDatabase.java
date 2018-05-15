@@ -182,4 +182,11 @@ public class SuratServiceDatabase implements SuratService
 		pengajuanSuratModel.setStatus_surat(statusSuratModel);
 		return pengajuanSuratModel;
 	}
+	@Override
+	public List<SuratModel> selectAllSurats() {
+
+		log.info("select all surats");
+		return suratMapper.selectAllSurats();
+	}
 }
+
