@@ -26,6 +26,8 @@
 - [x] Melakukan Penyaringan Surat Berdasarkan Rentang Tanggal Permohonan
 - [x] Melakukan Penyaringan Surat Berdasarkan Status Surat
 - [x] Web Service untuk Pengecekan Status Surat Pengantar Peminjaman Buku Untuk SIPERPUS
+- [x] Tambahan feature Web Service untuk Pengecekan semua Status Surat
+
 
 ### Web Service
 Our Web Service is available at [API page.](API.md)
