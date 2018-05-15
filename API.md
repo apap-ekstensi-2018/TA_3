@@ -21,7 +21,8 @@ The above command returns JSON structured like this:
 ### /api/surat/viewall
 #### URL : `/api/surat/viewall
 #### Method : `GET`
-
+The above command returns JSON structured like this:
+```json
 [
 {
 "id_mahasiswa":"1506721756",
